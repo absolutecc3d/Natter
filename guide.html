@@ -1,9 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Natter Server Guide</title>
+
 <style>
 *{
 box-sizing:border-box;
@@ -302,8 +304,8 @@ Firebase will then show you a configuration object similar to this:
 }</pre>
 
 <div class="note">
-Keep this configuration available. You will put it into the Natter
-connection screen.
+Keep this configuration available. You can either paste it directly into
+Natter or host it as a raw JSON file and use the URL option.
 </div>
 </div>
 
@@ -440,25 +442,95 @@ credentials or Admin SDK keys.
 <h2>8. Connect Natter</h2>
 
 <p>
-Open your Natter page.
+Natter gives you two ways to connect to a server.
+</p>
+
+<h3>Option A — Paste the config</h3>
+
+<p>
+Choose <b>Paste config</b> on the Natter setup screen and paste your
+Firebase configuration directly into the textbox.
+</p>
+
+<pre>{
+  "apiKey": "...",
+  "authDomain": "...",
+  "projectId": "...",
+  "storageBucket": "...",
+  "messagingSenderId": "...",
+  "appId": "..."
+}</pre>
+
+<h3>Option B — Use a raw config URL</h3>
+
+<p>
+You can also put the Firebase config into a JSON file and give Natter
+a direct URL to that file.
 </p>
 
 <p>
-Paste your Firebase configuration into the Firebase configuration box
-and connect.
+For example:
+</p>
+
+<div class="path">
+https://example.com/firebase-config.json
+</div>
+
+<p>
+The file should contain the Firebase config as normal JSON:
+</p>
+
+<pre>{
+  "apiKey": "AIza...",
+  "authDomain": "your-project.firebaseapp.com",
+  "projectId": "your-project",
+  "storageBucket": "your-project.firebasestorage.app",
+  "messagingSenderId": "123456789",
+  "appId": "1:123456789:web:abcdef",
+  "measurementId": "G-XXXXXXXXXX"
+}</pre>
+
+<p>
+On Natter's setup screen, choose <b>Use raw URL</b>, paste the URL and
+press <b>connect</b>.
+</p>
+
+<div class="warning">
+The raw config URL must be publicly accessible over HTTPS and must allow
+browser cross-origin requests (CORS). Natter fetches the JSON directly
+from the browser, so a URL that blocks CORS will not work.
+</div>
+
+<h3>Hosting the config file</h3>
+
+<p>
+You can host the JSON file on a service that provides a direct raw file
+URL, such as a static website or a raw GitHub file.
 </p>
 
 <p>
-Natter will then:</p>
+Make sure the URL points directly to the JSON file rather than to a
+webpage containing the JSON.
+</p>
 
-<ul>
-<li>Connect to your Firebase project</li>
-<li>Sign you in anonymously</li>
-<li>Load the server</li>
-<li>Load the messages</li>
-<li>Load the online users</li>
-<li>Load the server settings</li>
-</ul>
+<div class="note">
+The raw URL is just another way of supplying the same Firebase config.
+It does not replace Firebase Authentication or Firestore Rules.
+</div>
+
+<h3>Official Natter server</h3>
+
+<p>
+The Natter setup page also includes an
+<b>⭐ Official #natter Server</b>
+button. Clicking it automatically fills the config textbox for the
+official server.
+</p>
+
+<p>
+You can also use the normal paste or raw URL option to connect to other
+Natter servers.
+</p>
 </div>
 
 
@@ -751,6 +823,20 @@ and that the field is:
 The code must exactly match the code displayed by Natter.
 </p>
 
+<h3>The raw config URL doesn't work</h3>
+
+<p>
+Make sure:
+</p>
+
+<ul>
+<li>The URL uses <code>https://</code></li>
+<li>The URL points directly to JSON</li>
+<li>The JSON is valid</li>
+<li>The response allows CORS requests</li>
+<li>The JSON contains <code>apiKey</code>, <code>authDomain</code>, <code>projectId</code> and <code>appId</code></li>
+</ul>
+
 <h3>Messages aren't appearing</h3>
 
 <p>
@@ -768,8 +854,8 @@ That's it. You now have your own Natter server. 🎉
 </p>
 
 <p>
-Give people your Natter page and your Firebase configuration, and they can
-connect to your server.
+Give people your Natter page and either your Firebase configuration or
+your raw config URL, and they can connect to your server.
 </p>
 
 <div class="note">
@@ -787,3 +873,4 @@ Natter server guide
 
 </body>
 </html>
+```

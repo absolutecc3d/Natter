@@ -418,6 +418,7 @@ padding:8px;
 background:#09090d;
 border:1px solid #30303d;
 font-family:monospace;
+word-break:break-all;
 }
 
 .claimCode{
@@ -593,13 +594,17 @@ To prove you own this Firebase project, put the code below into the Firestore do
 </div>
 
 <div class="claimStep">
-<b>3.</b> Add a field:
+<b>3.</b> Create a field named:
+<span class="claimPath">code</span>
+</div>
 
+<div class="claimStep">
+<b>4.</b> Set its value to exactly:
 <span class="claimCode" id="claimCode"></span>
 </div>
 
 <div class="claimStep">
-The field must be named <b>code</b>.
+The field type should be <b>string</b>.
 </div>
 
 <div id="claimStatus" class="claimStatus">
@@ -1463,7 +1468,7 @@ claimCode=
 randomCode();
 
 claimCodeElement.textContent=
-"code: "+claimCode;
+claimCode;
 
 claimStatus.className="claimStatus";
 claimStatus.textContent=

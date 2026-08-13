@@ -31,16 +31,15 @@ button{cursor:pointer}
 #setup{
 width:100%;
 height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
+display:block;
 overflow-y:auto;
-padding:15px;
+padding:30px 15px;
 }
 
 .setupBox{
 width:540px;
 max-width:100%;
+margin:0 auto;
 background:#17171f;
 border:1px solid #44445a;
 box-shadow:4px 4px 0 #050507;
@@ -54,7 +53,9 @@ color:#fff;
 font-weight:bold;
 }
 
-.setupContent{padding:12px}
+.setupContent{
+padding:12px;
+}
 
 .setupContent>p{
 margin:0 0 10px;
@@ -74,7 +75,9 @@ font-family:monospace;
 font-size:12px;
 }
 
-#config:focus{border-color:#7777a5}
+#config:focus{
+border-color:#7777a5;
+}
 
 #connect{
 margin-top:8px;
@@ -84,7 +87,9 @@ background:#3b3b62;
 border:1px solid #686890;
 }
 
-#connect:hover{background:#484879}
+#connect:hover{
+background:#484879;
+}
 
 #connect:disabled{
 opacity:.6;
@@ -110,7 +115,9 @@ cursor:pointer;
 user-select:none;
 }
 
-.help summary:hover{color:#fff}
+.help summary:hover{
+color:#fff;
+}
 
 .helpContent{
 margin-top:11px;
@@ -118,22 +125,26 @@ color:#aaaab7;
 line-height:1.5;
 }
 
-.helpContent p{margin:0 0 10px}
+.helpContent p{
+margin:0 0 10px;
+}
 
-.helpContent b{color:#ddd}
+.helpContent b{
+color:#ddd;
+}
 
 .helpContent a{
 color:#aaaaff;
 }
-
-.helpContent a:hover{color:#fff}
 
 .helpContent ol{
 margin:8px 0 12px;
 padding-left:22px;
 }
 
-.helpContent li{margin-bottom:8px}
+.helpContent li{
+margin-bottom:8px;
+}
 
 .helpContent pre{
 background:#09090d;
@@ -183,7 +194,9 @@ font-weight:bold;
 margin-right:12px;
 }
 
-.room{color:#9d9db7}
+.room{
+color:#9d9db7;
+}
 
 .online{
 margin-left:auto;
@@ -191,15 +204,17 @@ color:#78d878;
 font-size:11px;
 }
 
-#changeName{
-margin-left:12px;
+#changeName,
+#claimServer{
+margin-left:5px;
 padding:2px 7px;
 color:#bbb;
 background:#20202f;
 border:1px solid #46465d;
 }
 
-#changeName:hover{
+#changeName:hover,
+#claimServer:hover{
 color:#fff;
 background:#30304a;
 }
@@ -247,7 +262,19 @@ overflow:hidden;
 text-overflow:ellipsis;
 }
 
-.you{color:#fff}
+.you{
+color:#fff;
+}
+
+.owner{
+color:#ffd65a;
+}
+
+.ownerBadge{
+font-size:9px;
+margin-left:5px;
+color:#ffd65a;
+}
 
 .chatArea{
 flex:1;
@@ -282,7 +309,9 @@ margin-bottom:7px;
 padding:2px 3px;
 }
 
-.message:hover{background:#14141c}
+.message:hover{
+background:#14141c;
+}
 
 .messageHeader{
 display:flex;
@@ -293,6 +322,11 @@ gap:7px;
 .username{
 color:#a9a9ff;
 font-weight:bold;
+}
+
+.messageOwner{
+color:#ffd65a;
+font-size:10px;
 }
 
 .time{
@@ -331,7 +365,9 @@ outline:none;
 padding:7px;
 }
 
-#message:focus{border-color:#696990}
+#message:focus{
+border-color:#696990;
+}
 
 #send{
 margin-left:5px;
@@ -341,7 +377,9 @@ color:#fff;
 border:1px solid #62628a;
 }
 
-#send:hover{background:#464673}
+#send:hover{
+background:#464673;
+}
 
 #send:disabled{
 opacity:.6;
@@ -355,11 +393,14 @@ display:none;
 align-items:center;
 justify-content:center;
 background:#000b;
+z-index:20;
 }
 
 .modalBox{
-width:320px;
+width:430px;
 max-width:calc(100% - 30px);
+max-height:90vh;
+overflow-y:auto;
 background:#17171f;
 border:1px solid #505070;
 box-shadow:4px 4px 0 #050507;
@@ -373,7 +414,9 @@ border-bottom:1px solid #505070;
 font-weight:bold;
 }
 
-.modalContent{padding:12px}
+.modalContent{
+padding:12px;
+}
 
 #nameInput{
 width:100%;
@@ -384,7 +427,9 @@ padding:7px;
 outline:none;
 }
 
-#nameInput:focus{border-color:#696990}
+#nameInput:focus{
+border-color:#696990;
+}
 
 .modalButtons{
 margin-top:8px;
@@ -399,7 +444,9 @@ color:#fff;
 border:1px solid #686890;
 }
 
-.modalButtons button:hover{background:#484879}
+.modalButtons button:hover{
+background:#484879;
+}
 
 .modalButtons .cancel{
 background:#20202f;
@@ -411,13 +458,81 @@ color:#ff7777;
 margin-top:7px;
 }
 
+.claimIntro{
+color:#aaaab7;
+line-height:1.5;
+margin-bottom:12px;
+}
+
+.claimStep{
+margin:10px 0;
+}
+
+.claimStep b{
+color:#fff;
+}
+
+.claimCode{
+display:block;
+margin-top:6px;
+padding:9px;
+background:#09090d;
+border:1px solid #414150;
+color:#ffd65a;
+font-family:monospace;
+font-size:14px;
+word-break:break-all;
+user-select:all;
+}
+
+.claimPath{
+display:block;
+margin-top:6px;
+padding:7px;
+background:#09090d;
+border:1px solid #30303d;
+font-family:monospace;
+color:#aaaaff;
+}
+
+.claimStatus{
+margin-top:10px;
+color:#9999aa;
+}
+
+.claimStatus.good{
+color:#78d878;
+}
+
+.claimStatus.bad{
+color:#ff7777;
+}
+
+.ownerInfo{
+padding:8px;
+margin-bottom:10px;
+border:1px solid #66582b;
+background:#201d12;
+color:#ffd65a;
+}
+
 @media(max-width:600px){
 
-.sidebar{display:none}
+.sidebar{
+display:none;
+}
 
-.room{display:none}
+.room{
+display:none;
+}
 
-.online{margin-left:auto}
+.online{
+margin-left:auto;
+}
+
+#claimServer{
+display:none;
+}
 
 }
 </style>
@@ -491,15 +606,6 @@ Copy the Firebase config and paste it above.
 
 </ol>
 
-<pre>const firebaseConfig = {
-  apiKey: "AIza...",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project",
-  storageBucket: "your-project.firebasestorage.app",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
-};</pre>
-
 <hr>
 
 <p>
@@ -542,11 +648,15 @@ Create the database.
 Open the <b>Rules</b> tab.
 </li>
 
-</ol>
+<li>
+Delete the rules currently there.
+</li>
 
-<p>
-Use these rules:
-</p>
+<li>
+Paste these rules:
+</li>
+
+</ol>
 
 <pre>rules_version = '2';
 
@@ -562,16 +672,89 @@ service cloud.firestore {
         if request.auth != null;
     }
 
+    match /server/claim {
+      allow read: if request.auth != null;
+
+      allow create: if request.auth != null;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /server/settings {
+      allow read: if request.auth != null;
+      allow create, update: if request.auth != null;
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
   }
 }</pre>
 
 <p>
-Then click <b>Publish</b>.
+Click <b>Publish</b> after pasting them.
 </p>
 
-<p class="helpNote">
-The online list uses a separate ID for every browser tab,
-so multiple tabs can appear as separate users.
+<hr>
+
+<p>
+<b>Server name:</b>
+</p>
+
+<p>
+Go to:
+</p>
+
+<pre>server
+└── settings
+    └── serverName: "general"</pre>
+
+<p>
+Change <b>serverName</b> and the Natter channel name will update automatically.
+</p>
+
+<hr>
+
+<p>
+<b>Claim your server:</b>
+</p>
+
+<p>
+Click <b>claim</b> in Natter and follow the instructions. Natter will generate a random code that you put into:
+</p>
+
+<pre>server
+└── claim
+    └── code: "your-code-here"</pre>
+
+<p>
+Once verified, Natter stores your Firebase user ID as the owner.
+</p>
+
+<hr>
+
+<p>
+<b>Owner messages:</b>
+</p>
+
+<p>
+Messages sent by the owner are saved with:
+</p>
+
+<pre>owner: true</pre>
+
+<p>
+Other messages are saved with:
+</p>
+
+<pre>owner: false</pre>
+
+<p>
+This means owner tags stay visible after reloading Natter.
 </p>
 
 </div>
@@ -594,12 +777,16 @@ Natter
 </div>
 
 <div class="room">
-#general
+#<span id="serverName">general</span>
 </div>
 
 <div class="online">
 ● <span id="onlineCount">0</span> online
 </div>
+
+<button id="claimServer" type="button">
+claim
+</button>
 
 <button id="changeName" type="button">
 name
@@ -624,7 +811,7 @@ online — <span id="sidebarCount">0</span>
 <div class="chatArea">
 
 <div class="chatHeader">
-<span>#</span>general
+<span>#</span><span id="chatName">general</span>
 </div>
 
 <div id="messages">
@@ -695,6 +882,69 @@ cancel
 </div>
 
 
+<div id="claimModal" class="modal">
+
+<div class="modalBox">
+
+<div class="modalTitle">
+Claim this server
+</div>
+
+<div class="modalContent">
+
+<div id="claimOwnerInfo"></div>
+
+<div class="claimIntro">
+To prove that you own this Firebase project, Natter needs you to edit one Firestore document.
+</div>
+
+<div class="claimStep">
+<b>1.</b> Open your Firebase Console and go to:
+<span class="claimPath">Firestore Database → Data</span>
+</div>
+
+<div class="claimStep">
+<b>2.</b> Create a collection called:
+<span class="claimPath">server</span>
+</div>
+
+<div class="claimStep">
+<b>3.</b> Create a document with the ID:
+<span class="claimPath">claim</span>
+</div>
+
+<div class="claimStep">
+<b>4.</b> Add a field called <b>code</b> with this value:
+<span id="claimCode" class="claimCode"></span>
+</div>
+
+<div class="claimStep">
+<b>5.</b> Save the document.
+</div>
+
+<div id="claimStatus" class="claimStatus">
+Waiting for the claim document...
+</div>
+
+<div class="modalButtons">
+
+<button
+id="closeClaim"
+class="cancel"
+type="button"
+>
+close
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 <script type="module">
 
 import {
@@ -729,11 +979,21 @@ let user=null;
 
 let unsubscribeMessages=null;
 let unsubscribeUsers=null;
+let unsubscribeClaim=null;
+let unsubscribeServerSettings=null;
+
 let heartbeatTimer=null;
 let connected=false;
 
 let username=
 localStorage.getItem("natter_username")||"";
+
+let serverOwnerId=null;
+
+let rememberedOwnerId=
+localStorage.getItem("natter_owner_id")||"";
+
+let claimCode=null;
 
 
 const tabId=
@@ -787,6 +1047,27 @@ document.getElementById("nameInput");
 
 const nameError=
 document.getElementById("nameError");
+
+const claimModal=
+document.getElementById("claimModal");
+
+const claimCodeElement=
+document.getElementById("claimCode");
+
+const claimStatus=
+document.getElementById("claimStatus");
+
+const claimOwnerInfo=
+document.getElementById("claimOwnerInfo");
+
+const claimButton=
+document.getElementById("claimServer");
+
+const serverNameElement=
+document.getElementById("serverName");
+
+const chatNameElement=
+document.getElementById("chatName");
 
 
 const savedConfig=
@@ -941,7 +1222,7 @@ e.code
 }
 
 
-async function handleAuthChange(firebaseUser){
+function handleAuthChange(firebaseUser){
 
 if(!firebaseUser){
 
@@ -955,27 +1236,10 @@ user=firebaseUser;
 setup.style.display="none";
 appScreen.style.display="flex";
 
-updateCurrentUser();
-
-if(!username){
-openName();
-}
-
 startRealtimeMessages();
 startPresence();
-
-}
-
-
-function updateCurrentUser(){
-
-const name=
-document.getElementById("currentUser");
-
-if(name){
-name.textContent=
-username||"anonymous";
-}
+startOwnerListener();
+startServerNameListener();
 
 }
 
@@ -1003,6 +1267,7 @@ snapshot=>{
 renderMessages(snapshot);
 },
 e=>{
+
 console.error(e);
 
 messages.innerHTML=
@@ -1028,9 +1293,10 @@ return;
 }
 
 snapshot.forEach(
-docSnap=>{
+messageDoc=>{
 
-const msg=docSnap.data();
+const msg=
+messageDoc.data();
 
 const wrapper=
 document.createElement("div");
@@ -1049,6 +1315,29 @@ name.className="username";
 
 name.textContent=
 msg.name||"anonymous";
+
+header.appendChild(name);
+
+
+/*
+The owner value is stored directly
+on the message. It does not need
+to be recalculated after reload.
+*/
+
+if(msg.owner===true){
+
+const badge=
+document.createElement("span");
+
+badge.className="messageOwner";
+
+badge.textContent=
+"👑 owner";
+
+header.appendChild(badge);
+
+}
 
 const time=
 document.createElement("span");
@@ -1077,6 +1366,8 @@ time.textContent="now";
 
 }
 
+header.appendChild(time);
+
 const text=
 document.createElement("div");
 
@@ -1085,8 +1376,8 @@ text.className="messageText";
 text.textContent=
 msg.text||"";
 
-header.append(name,time);
-wrapper.append(header,text);
+wrapper.appendChild(header);
+wrapper.appendChild(text);
 
 messages.appendChild(wrapper);
 
@@ -1116,8 +1407,19 @@ messageInput.value.trim();
 if(!text)return;
 
 messageInput.value="";
-
 sendButton.disabled=true;
+
+
+/*
+A message is marked owner if the
+Firebase user is the claimed owner
+OR this browser remembers that user
+as the owner.
+*/
+
+const owner=
+serverOwnerId===user.uid||
+rememberedOwnerId===user.uid;
 
 try{
 
@@ -1127,6 +1429,7 @@ collection(db,"messages"),
 text:text,
 name:username,
 uid:user.uid,
+owner:owner,
 createdAt:serverTimestamp()
 }
 );
@@ -1145,6 +1448,7 @@ e.message
 }finally{
 
 sendButton.disabled=false;
+
 messageInput.focus();
 
 }
@@ -1154,7 +1458,7 @@ messageInput.focus();
 
 async function updatePresence(){
 
-if(!db)return;
+if(!db||!user)return;
 
 try{
 
@@ -1165,7 +1469,7 @@ db,
 tabId
 ),
 {
-uid:user?user.uid:"",
+uid:user.uid,
 name:username||"anonymous",
 lastSeen:Date.now()
 },
@@ -1237,24 +1541,20 @@ if(unsubscribeUsers){
 unsubscribeUsers();
 }
 
-const presenceRef=
-collection(
-db,
-"presence"
-);
-
 unsubscribeUsers=
 onSnapshot(
-presenceRef,
+collection(db,"presence"),
 snapshot=>{
 
 const now=Date.now();
+
 const activeUsers=[];
 
 snapshot.forEach(
-docSnap=>{
+presenceDoc=>{
 
-const data=docSnap.data();
+const data=
+presenceDoc.data();
 
 if(
 typeof data.lastSeen==="number"&&
@@ -1263,7 +1563,7 @@ now-data.lastSeen<30000
 
 activeUsers.push({
 ...data,
-presenceId:docSnap.id
+presenceId:presenceDoc.id
 });
 
 }
@@ -1291,6 +1591,7 @@ activeUsers.sort(
 (a,b)=>{
 
 if(a.presenceId===tabId)return-1;
+
 if(b.presenceId===tabId)return 1;
 
 return(
@@ -1312,14 +1613,28 @@ document.createElement("div");
 
 row.className="user";
 
-if(person.presenceId===tabId){
+if(
+person.presenceId===tabId
+){
+
 row.classList.add("you");
+
+}
+
+if(
+serverOwnerId&&
+person.uid===serverOwnerId
+){
+
+row.classList.add("owner");
+
 }
 
 const dot=
 document.createElement("span");
 
 dot.className="userDot";
+
 dot.textContent="●";
 
 const name=
@@ -1330,18 +1645,42 @@ name.className="userName";
 name.textContent=
 person.name||"anonymous";
 
-if(person.presenceId===tabId){
+if(
+person.presenceId===tabId
+){
+
 name.textContent+=" (you)";
+
 }
 
-row.append(dot,name);
+row.append(
+dot,
+name
+);
+
+if(
+serverOwnerId&&
+person.uid===serverOwnerId
+){
+
+const badge=
+document.createElement("span");
+
+badge.className="ownerBadge";
+
+badge.textContent="👑";
+
+row.appendChild(badge);
+
+}
 
 users.appendChild(row);
 
 }
 );
 
-const count=activeUsers.length;
+const count=
+activeUsers.length;
 
 onlineCount.textContent=count;
 sidebarCount.textContent=count;
@@ -1349,10 +1688,432 @@ sidebarCount.textContent=count;
 }
 
 
+function startServerNameListener(){
+
+if(unsubscribeServerSettings){
+unsubscribeServerSettings();
+}
+
+const settingsRef=
+doc(
+db,
+"server",
+"settings"
+);
+
+unsubscribeServerSettings=
+onSnapshot(
+settingsRef,
+snapshot=>{
+
+let name="general";
+
+if(snapshot.exists()){
+
+const data=
+snapshot.data();
+
+if(
+typeof data.serverName==="string"&&
+data.serverName.trim()
+){
+
+name=
+data.serverName
+.trim()
+.replace(/^#/,"")
+.slice(0,40);
+
+}
+
+}
+
+serverNameElement.textContent=name;
+chatNameElement.textContent=name;
+
+document.title=
+"Natter - #"+name;
+
+},
+e=>{
+
+console.error(
+"Server name listener error:",
+e
+);
+
+serverNameElement.textContent="general";
+chatNameElement.textContent="general";
+
+}
+);
+
+}
+
+
+function startOwnerListener(){
+
+if(unsubscribeClaim){
+unsubscribeClaim();
+}
+
+const claimRef=
+doc(
+db,
+"server",
+"claim"
+);
+
+unsubscribeClaim=
+onSnapshot(
+claimRef,
+snapshot=>{
+
+if(!snapshot.exists()){
+
+serverOwnerId=null;
+
+updateClaimButton();
+
+return;
+
+}
+
+const data=
+snapshot.data();
+
+if(data.ownerId){
+
+serverOwnerId=
+data.ownerId;
+
+if(
+user&&
+data.ownerId===user.uid
+){
+
+rememberedOwnerId=
+user.uid;
+
+localStorage.setItem(
+"natter_owner_id",
+user.uid
+);
+
+}
+
+}
+
+updateClaimButton();
+
+}
+);
+
+}
+
+
+function updateClaimButton(){
+
+if(
+user&&
+rememberedOwnerId===user.uid
+){
+
+claimButton.textContent=
+"👑 owner";
+
+return;
+
+}
+
+if(
+user&&
+serverOwnerId===user.uid
+){
+
+claimButton.textContent=
+"👑 owner";
+
+return;
+
+}
+
+if(serverOwnerId){
+
+claimButton.textContent=
+"claimed";
+
+return;
+
+}
+
+claimButton.textContent=
+"claim";
+
+}
+
+
+function randomClaimCode(){
+
+const chars=
+"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+
+let result="natterClaim_";
+
+for(let i=0;i<14;i++){
+
+result+=
+chars[
+Math.floor(
+Math.random()*chars.length
+)
+];
+
+}
+
+return result;
+
+}
+
+
+function openClaim(){
+
+if(!user)return;
+
+claimOwnerInfo.innerHTML="";
+claimStatus.className="claimStatus";
+
+if(
+rememberedOwnerId===user.uid
+){
+
+claimOwnerInfo.innerHTML=
+'<div class="ownerInfo">👑 This browser remembers you as the server owner.</div>';
+
+claimCodeElement.textContent="";
+
+claimStatus.className=
+"claimStatus good";
+
+claimStatus.textContent=
+"You're already verified as the owner.";
+
+claimModal.style.display="flex";
+
+return;
+
+}
+
+if(serverOwnerId){
+
+if(
+serverOwnerId===user.uid
+){
+
+rememberedOwnerId=
+user.uid;
+
+localStorage.setItem(
+"natter_owner_id",
+user.uid
+);
+
+claimOwnerInfo.innerHTML=
+'<div class="ownerInfo">👑 You are the owner of this Natter server.</div>';
+
+claimCodeElement.textContent="";
+
+claimStatus.className=
+"claimStatus good";
+
+claimStatus.textContent=
+"Your ownership has been remembered in this browser.";
+
+}else{
+
+claimOwnerInfo.innerHTML=
+'<div class="ownerInfo">This server has already been claimed by its owner.</div>';
+
+claimCodeElement.textContent="";
+claimStatus.textContent="";
+
+}
+
+claimModal.style.display="flex";
+
+return;
+
+}
+
+claimCode=
+randomClaimCode();
+
+claimCodeElement.textContent=
+claimCode;
+
+claimStatus.className=
+"claimStatus";
+
+claimStatus.textContent=
+"Waiting for the claim document...";
+
+claimModal.style.display="flex";
+
+watchForClaim();
+
+}
+
+
+function watchForClaim(){
+
+if(!claimCode)return;
+
+const claimRef=
+doc(
+db,
+"server",
+"claim"
+);
+
+if(unsubscribeClaim){
+unsubscribeClaim();
+}
+
+unsubscribeClaim=
+onSnapshot(
+claimRef,
+async snapshot=>{
+
+if(!snapshot.exists()){
+
+claimStatus.className=
+"claimStatus";
+
+claimStatus.textContent=
+"Waiting for the claim document...";
+
+return;
+
+}
+
+const data=
+snapshot.data();
+
+if(data.ownerId){
+
+if(
+data.ownerId===user.uid
+){
+
+serverOwnerId=
+user.uid;
+
+rememberedOwnerId=
+user.uid;
+
+localStorage.setItem(
+"natter_owner_id",
+user.uid
+);
+
+claimStatus.className=
+"claimStatus good";
+
+claimStatus.textContent=
+"✓ Server successfully claimed!";
+
+claimOwnerInfo.innerHTML=
+'<div class="ownerInfo">👑 You now own this Natter server. This browser will remember you.</div>';
+
+updateClaimButton();
+
+}else{
+
+claimStatus.className=
+"claimStatus bad";
+
+claimStatus.textContent=
+"This server has already been claimed.";
+
+}
+
+return;
+
+}
+
+if(data.code!==claimCode){
+
+claimStatus.className=
+"claimStatus bad";
+
+claimStatus.textContent=
+"The document exists, but the code is incorrect.";
+
+return;
+
+}
+
+claimStatus.className=
+"claimStatus good";
+
+claimStatus.textContent=
+"Code verified! Claiming server...";
+
+try{
+
+await setDoc(
+claimRef,
+{
+ownerId:user.uid,
+claimedAt:serverTimestamp()
+},
+{
+merge:true
+}
+);
+
+serverOwnerId=
+user.uid;
+
+rememberedOwnerId=
+user.uid;
+
+localStorage.setItem(
+"natter_owner_id",
+user.uid
+);
+
+claimStatus.textContent=
+"✓ Server successfully claimed!";
+
+updateClaimButton();
+
+}catch(e){
+
+console.error(e);
+
+claimStatus.className=
+"claimStatus bad";
+
+claimStatus.textContent=
+"Could not claim the server: "+
+e.message;
+
+}
+
+}
+);
+
+}
+
+
 function openName(){
 
-nameInput.value=username;
+nameInput.value=
+username;
+
 nameError.textContent="";
+
 nameModal.style.display="flex";
 
 setTimeout(
@@ -1379,16 +2140,19 @@ return;
 
 }
 
-username=value.slice(0,32);
+username=
+value.slice(
+0,
+32
+);
 
 localStorage.setItem(
 "natter_username",
 username
 );
 
-nameModal.style.display="none";
-
-updateCurrentUser();
+nameModal.style.display=
+"none";
 
 await updatePresence();
 
@@ -1414,6 +2178,7 @@ e=>{
 if(e.key==="Enter"){
 
 e.preventDefault();
+
 sendMessage();
 
 }
@@ -1421,20 +2186,23 @@ sendMessage();
 }
 );
 
-document.getElementById("changeName")
-.addEventListener(
+document.getElementById(
+"changeName"
+).addEventListener(
 "click",
 openName
 );
 
-document.getElementById("saveName")
-.addEventListener(
+document.getElementById(
+"saveName"
+).addEventListener(
 "click",
 saveName
 );
 
-document.getElementById("cancelName")
-.addEventListener(
+document.getElementById(
+"cancelName"
+).addEventListener(
 "click",
 ()=>{
 nameModal.style.display="none";
@@ -1448,14 +2216,31 @@ e=>{
 if(e.key==="Enter"){
 
 e.preventDefault();
+
 saveName();
 
 }
 
 if(e.key==="Escape"){
+
 nameModal.style.display="none";
+
 }
 
+}
+);
+
+claimButton.addEventListener(
+"click",
+openClaim
+);
+
+document.getElementById(
+"closeClaim"
+).addEventListener(
+"click",
+()=>{
+claimModal.style.display="none";
 }
 );
 

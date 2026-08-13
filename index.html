@@ -9,461 +9,415 @@
 *{box-sizing:border-box}
 
 html,body{
-    margin:0;
-    width:100%;
-    height:100%;
+margin:0;
+width:100%;
+height:100%;
 }
 
 body{
-    background:#0b0b10;
-    color:#d8d8df;
-    font-family:Tahoma,Verdana,Arial,sans-serif;
-    font-size:13px;
+background:#0b0b10;
+color:#d8d8df;
+font-family:Tahoma,Verdana,Arial,sans-serif;
+font-size:13px;
 }
 
 button,input,textarea{
-    font-family:Tahoma,Verdana,Arial,sans-serif;
-    font-size:13px;
+font-family:Tahoma,Verdana,Arial,sans-serif;
+font-size:13px;
 }
 
-button{
-    cursor:pointer;
-}
+button{cursor:pointer}
 
 #setup{
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow-y:auto;
-    padding:15px;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow-y:auto;
+padding:15px;
 }
 
 .setupBox{
-    width:540px;
-    max-width:100%;
-    background:#17171f;
-    border:1px solid #44445a;
-    box-shadow:4px 4px 0 #050507;
+width:540px;
+max-width:100%;
+background:#17171f;
+border:1px solid #44445a;
+box-shadow:4px 4px 0 #050507;
 }
 
 .setupTitle{
-    background:#292942;
-    border-bottom:1px solid #505070;
-    padding:7px 9px;
-    color:#fff;
-    font-weight:bold;
+background:#292942;
+border-bottom:1px solid #505070;
+padding:7px 9px;
+color:#fff;
+font-weight:bold;
 }
 
-.setupContent{
-    padding:12px;
-}
+.setupContent{padding:12px}
 
 .setupContent>p{
-    margin:0 0 10px;
-    color:#aaaab7;
+margin:0 0 10px;
+color:#aaaab7;
 }
 
 #config{
-    width:100%;
-    height:190px;
-    resize:vertical;
-    background:#09090d;
-    border:1px solid #414150;
-    color:#ddd;
-    padding:8px;
-    outline:none;
-    font-family:monospace;
-    font-size:12px;
+width:100%;
+height:190px;
+resize:vertical;
+background:#09090d;
+border:1px solid #414150;
+color:#ddd;
+padding:8px;
+outline:none;
+font-family:monospace;
+font-size:12px;
 }
 
-#config:focus{
-    border-color:#7777a5;
-}
+#config:focus{border-color:#7777a5}
 
 #connect{
-    margin-top:8px;
-    padding:5px 14px;
-    color:#fff;
-    background:#3b3b62;
-    border:1px solid #686890;
+margin-top:8px;
+padding:5px 14px;
+color:#fff;
+background:#3b3b62;
+border:1px solid #686890;
 }
 
-#connect:hover{
-    background:#484879;
-}
+#connect:hover{background:#484879}
 
 #connect:disabled{
-    opacity:.6;
-    cursor:default;
+opacity:.6;
+cursor:default;
 }
 
 #error{
-    color:#ff7777;
-    margin-top:8px;
-    line-height:1.4;
-    white-space:pre-wrap;
+color:#ff7777;
+margin-top:8px;
+line-height:1.4;
+white-space:pre-wrap;
 }
 
 .help{
-    margin-top:14px;
-    border-top:1px solid #30303d;
-    padding-top:10px;
+margin-top:14px;
+border-top:1px solid #30303d;
+padding-top:10px;
 }
 
 .help summary{
-    color:#9d9db7;
-    cursor:pointer;
-    user-select:none;
+color:#9d9db7;
+cursor:pointer;
+user-select:none;
 }
 
-.help summary:hover{
-    color:#fff;
-}
+.help summary:hover{color:#fff}
 
 .helpContent{
-    margin-top:11px;
-    color:#aaaab7;
-    line-height:1.5;
+margin-top:11px;
+color:#aaaab7;
+line-height:1.5;
 }
 
-.helpContent p{
-    margin:0 0 10px;
-}
+.helpContent p{margin:0 0 10px}
 
-.helpContent b{
-    color:#ddd;
-}
+.helpContent b{color:#ddd}
 
 .helpContent a{
-    color:#aaaaff;
+color:#aaaaff;
 }
 
-.helpContent a:hover{
-    color:#fff;
-}
+.helpContent a:hover{color:#fff}
 
 .helpContent ol{
-    margin:8px 0 12px;
-    padding-left:22px;
+margin:8px 0 12px;
+padding-left:22px;
 }
 
-.helpContent li{
-    margin-bottom:8px;
-}
+.helpContent li{margin-bottom:8px}
 
 .helpContent pre{
-    background:#09090d;
-    border:1px solid #30303d;
-    padding:8px;
-    overflow-x:auto;
-    color:#bbb;
-    font-family:monospace;
-    font-size:11px;
-    line-height:1.4;
-    white-space:pre;
+background:#09090d;
+border:1px solid #30303d;
+padding:8px;
+overflow-x:auto;
+color:#bbb;
+font-family:monospace;
+font-size:11px;
+line-height:1.4;
+white-space:pre;
 }
 
 .helpContent hr{
-    border:0;
-    border-top:1px solid #30303d;
-    margin:14px 0;
+border:0;
+border-top:1px solid #30303d;
+margin:14px 0;
 }
 
 .helpNote{
-    border-left:2px solid #55557a;
-    padding-left:8px;
-    color:#77778c!important;
-    font-size:11px;
+border-left:2px solid #55557a;
+padding-left:8px;
+color:#77778c!important;
+font-size:11px;
 }
 
 #app{
-    display:none;
-    width:100%;
-    height:100%;
-    flex-direction:column;
+display:none;
+width:100%;
+height:100%;
+flex-direction:column;
 }
 
 .topbar{
-    height:38px;
-    flex-shrink:0;
-    display:flex;
-    align-items:center;
-    background:#292942;
-    border-bottom:1px solid #505070;
-    padding:0 8px;
+height:38px;
+flex-shrink:0;
+display:flex;
+align-items:center;
+background:#292942;
+border-bottom:1px solid #505070;
+padding:0 8px;
 }
 
 .logo{
-    color:#fff;
-    font-weight:bold;
-    margin-right:12px;
+color:#fff;
+font-weight:bold;
+margin-right:12px;
 }
 
-.room{
-    color:#9d9db7;
-}
+.room{color:#9d9db7}
 
 .online{
-    margin-left:auto;
-    color:#78d878;
-    font-size:11px;
+margin-left:auto;
+color:#78d878;
+font-size:11px;
 }
 
 #changeName{
-    margin-left:12px;
-    padding:2px 7px;
-    color:#bbb;
-    background:#20202f;
-    border:1px solid #46465d;
+margin-left:12px;
+padding:2px 7px;
+color:#bbb;
+background:#20202f;
+border:1px solid #46465d;
 }
 
 #changeName:hover{
-    color:#fff;
-    background:#30304a;
+color:#fff;
+background:#30304a;
 }
 
 .main{
-    flex:1;
-    min-height:0;
-    display:flex;
+flex:1;
+min-height:0;
+display:flex;
 }
 
 .sidebar{
-    width:175px;
-    flex-shrink:0;
-    background:#111118;
-    border-right:1px solid #30303d;
-    padding:9px;
-    overflow-y:auto;
+width:175px;
+flex-shrink:0;
+background:#111118;
+border-right:1px solid #30303d;
+padding:9px;
+overflow-y:auto;
 }
 
 .sidebarTitle{
-    color:#8888a5;
-    font-size:11px;
-    font-weight:bold;
-    text-transform:uppercase;
-    margin-bottom:7px;
+color:#8888a5;
+font-size:11px;
+font-weight:bold;
+text-transform:uppercase;
+margin-bottom:7px;
 }
 
 .user{
-    display:flex;
-    align-items:center;
-    padding:4px;
-    color:#bbb;
-    overflow:hidden;
-    white-space:nowrap;
+display:flex;
+align-items:center;
+padding:4px;
+color:#bbb;
+overflow:hidden;
+white-space:nowrap;
 }
 
 .userDot{
-    color:#68c868;
-    font-size:8px;
-    margin-right:7px;
+color:#68c868;
+font-size:8px;
+margin-right:7px;
 }
 
 .userName{
-    overflow:hidden;
-    text-overflow:ellipsis;
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
-.you{
-    color:#fff;
-}
-
-.userCount{
-    color:#555568;
-    font-size:10px;
-    margin-left:4px;
-}
+.you{color:#fff}
 
 .chatArea{
-    flex:1;
-    min-width:0;
-    display:flex;
-    flex-direction:column;
+flex:1;
+min-width:0;
+display:flex;
+flex-direction:column;
 }
 
 .chatHeader{
-    flex-shrink:0;
-    padding:8px 12px;
-    background:#111118;
-    border-bottom:1px solid #30303d;
-    color:#fff;
-    font-weight:bold;
+flex-shrink:0;
+padding:8px 12px;
+background:#111118;
+border-bottom:1px solid #30303d;
+color:#fff;
+font-weight:bold;
 }
 
 .chatHeader span{
-    color:#77778c;
-    margin-right:5px;
+color:#77778c;
+margin-right:5px;
 }
 
 #messages{
-    flex:1;
-    min-height:0;
-    overflow-y:auto;
-    padding:9px 12px;
+flex:1;
+min-height:0;
+overflow-y:auto;
+padding:9px 12px;
 }
 
 .message{
-    margin-bottom:7px;
-    padding:2px 3px;
+margin-bottom:7px;
+padding:2px 3px;
 }
 
-.message:hover{
-    background:#14141c;
-}
+.message:hover{background:#14141c}
 
 .messageHeader{
-    display:flex;
-    align-items:baseline;
-    gap:7px;
+display:flex;
+align-items:baseline;
+gap:7px;
 }
 
 .username{
-    color:#a9a9ff;
-    font-weight:bold;
+color:#a9a9ff;
+font-weight:bold;
 }
 
 .time{
-    color:#555568;
-    font-size:10px;
+color:#555568;
+font-size:10px;
 }
 
 .messageText{
-    margin-top:1px;
-    color:#d0d0d6;
-    white-space:pre-wrap;
-    overflow-wrap:anywhere;
-    line-height:1.35;
+margin-top:1px;
+color:#d0d0d6;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+line-height:1.35;
 }
 
 .empty{
-    color:#555568;
-    text-align:center;
-    padding-top:35px;
+color:#555568;
+text-align:center;
+padding-top:35px;
 }
 
 .composer{
-    display:flex;
-    padding:7px;
-    background:#17171f;
-    border-top:1px solid #30303d;
+display:flex;
+padding:7px;
+background:#17171f;
+border-top:1px solid #30303d;
 }
 
 #message{
-    flex:1;
-    min-width:0;
-    background:#09090d;
-    color:#ddd;
-    border:1px solid #414150;
-    outline:none;
-    padding:7px;
+flex:1;
+min-width:0;
+background:#09090d;
+color:#ddd;
+border:1px solid #414150;
+outline:none;
+padding:7px;
 }
 
-#message:focus{
-    border-color:#696990;
-}
+#message:focus{border-color:#696990}
 
 #send{
-    margin-left:5px;
-    padding:0 14px;
-    background:#38385b;
-    color:#fff;
-    border:1px solid #62628a;
+margin-left:5px;
+padding:0 14px;
+background:#38385b;
+color:#fff;
+border:1px solid #62628a;
 }
 
-#send:hover{
-    background:#464673;
-}
+#send:hover{background:#464673}
 
 #send:disabled{
-    opacity:.6;
-    cursor:default;
+opacity:.6;
+cursor:default;
 }
 
 .modal{
-    position:fixed;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:#000b;
+position:fixed;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+background:#000b;
 }
 
 .modalBox{
-    width:320px;
-    max-width:calc(100% - 30px);
-    background:#17171f;
-    border:1px solid #505070;
-    box-shadow:4px 4px 0 #050507;
+width:320px;
+max-width:calc(100% - 30px);
+background:#17171f;
+border:1px solid #505070;
+box-shadow:4px 4px 0 #050507;
 }
 
 .modalTitle{
-    background:#292942;
-    color:#fff;
-    padding:7px 9px;
-    border-bottom:1px solid #505070;
-    font-weight:bold;
+background:#292942;
+color:#fff;
+padding:7px 9px;
+border-bottom:1px solid #505070;
+font-weight:bold;
 }
 
-.modalContent{
-    padding:12px;
-}
+.modalContent{padding:12px}
 
 #nameInput{
-    width:100%;
-    background:#09090d;
-    color:#ddd;
-    border:1px solid #414150;
-    padding:7px;
-    outline:none;
+width:100%;
+background:#09090d;
+color:#ddd;
+border:1px solid #414150;
+padding:7px;
+outline:none;
 }
 
-#nameInput:focus{
-    border-color:#696990;
-}
+#nameInput:focus{border-color:#696990}
 
 .modalButtons{
-    margin-top:8px;
-    display:flex;
-    gap:5px;
+margin-top:8px;
+display:flex;
+gap:5px;
 }
 
 .modalButtons button{
-    padding:5px 12px;
-    background:#3b3b62;
-    color:#fff;
-    border:1px solid #686890;
+padding:5px 12px;
+background:#3b3b62;
+color:#fff;
+border:1px solid #686890;
 }
 
-.modalButtons button:hover{
-    background:#484879;
-}
+.modalButtons button:hover{background:#484879}
 
 .modalButtons .cancel{
-    background:#20202f;
-    border-color:#46465d;
+background:#20202f;
+border-color:#46465d;
 }
 
 #nameError{
-    color:#ff7777;
-    margin-top:7px;
+color:#ff7777;
+margin-top:7px;
 }
 
 @media(max-width:600px){
 
-    .sidebar{
-        display:none;
-    }
+.sidebar{display:none}
 
-    .room{
-        display:none;
-    }
+.room{display:none}
 
-    .online{
-        margin-left:auto;
-    }
+.online{margin-left:auto}
 
 }
 </style>
@@ -473,22 +427,22 @@ button{
 
 <div id="setup">
 
-    <div class="setupBox">
+<div class="setupBox">
 
-        <div class="setupTitle">
-            Natter setup
-        </div>
+<div class="setupTitle">
+Natter setup
+</div>
 
-        <div class="setupContent">
+<div class="setupContent">
 
-            <p>
-                Paste your Firebase Web App config below.
-            </p>
+<p>
+Paste your Firebase Web App config below.
+</p>
 
-            <textarea
-                id="config"
-                spellcheck="false"
-                placeholder="const firebaseConfig = {
+<textarea
+id="config"
+spellcheck="false"
+placeholder="const firebaseConfig = {
   apiKey: &quot;...&quot;,
   authDomain: &quot;...&quot;,
   projectId: &quot;...&quot;,
@@ -496,51 +450,48 @@ button{
   messagingSenderId: &quot;...&quot;,
   appId: &quot;...&quot;
 };"
-            ></textarea>
+></textarea>
 
-            <button
-                id="connect"
-                type="button"
-            >
-                connect
-            </button>
+<button id="connect" type="button">
+connect
+</button>
 
-            <div id="error"></div>
+<div id="error"></div>
 
-            <details class="help">
+<details class="help">
 
-                <summary>
-                    how do i set this up?
-                </summary>
+<summary>
+how do i set this up?
+</summary>
 
-                <div class="helpContent">
+<div class="helpContent">
 
-                    <ol>
+<ol>
 
-                        <li>
-                            Open
-                            <a
-                                href="https://console.firebase.google.com/"
-                                target="_blank"
-                                rel="noopener"
-                            >Firebase Console</a>.
-                        </li>
+<li>
+Open
+<a
+href="https://console.firebase.google.com/"
+target="_blank"
+rel="noopener"
+>Firebase Console</a>.
+</li>
 
-                        <li>
-                            Create or open a Firebase project.
-                        </li>
+<li>
+Create or open a Firebase project.
+</li>
 
-                        <li>
-                            Add a <b>Web</b> app.
-                        </li>
+<li>
+Add a <b>Web</b> app.
+</li>
 
-                        <li>
-                            Copy the Firebase config and paste it above.
-                        </li>
+<li>
+Copy the Firebase config and paste it above.
+</li>
 
-                    </ol>
+</ol>
 
-                    <pre>const firebaseConfig = {
+<pre>const firebaseConfig = {
   apiKey: "AIza...",
   authDomain: "your-project.firebaseapp.com",
   projectId: "your-project",
@@ -549,55 +500,55 @@ button{
   appId: "1:123456789:web:abcdef"
 };</pre>
 
-                    <hr>
+<hr>
 
-                    <p>
-                        <b>Enable Anonymous Authentication:</b>
-                    </p>
+<p>
+<b>Enable Anonymous Authentication:</b>
+</p>
 
-                    <ol>
+<ol>
 
-                        <li>
-                            Open <b>Authentication</b>.
-                        </li>
+<li>
+Open <b>Authentication</b>.
+</li>
 
-                        <li>
-                            Open <b>Sign-in method</b>.
-                        </li>
+<li>
+Open <b>Sign-in method</b>.
+</li>
 
-                        <li>
-                            Enable <b>Anonymous</b>.
-                        </li>
+<li>
+Enable <b>Anonymous</b>.
+</li>
 
-                    </ol>
+</ol>
 
-                    <hr>
+<hr>
 
-                    <p>
-                        <b>Create Firestore:</b>
-                    </p>
+<p>
+<b>Create Firestore:</b>
+</p>
 
-                    <ol>
+<ol>
 
-                        <li>
-                            Open <b>Firestore Database</b>.
-                        </li>
+<li>
+Open <b>Firestore Database</b>.
+</li>
 
-                        <li>
-                            Create the database.
-                        </li>
+<li>
+Create the database.
+</li>
 
-                        <li>
-                            Open the <b>Rules</b> tab.
-                        </li>
+<li>
+Open the <b>Rules</b> tab.
+</li>
 
-                    </ol>
+</ol>
 
-                    <p>
-                        Use these rules:
-                    </p>
+<p>
+Use these rules:
+</p>
 
-                    <pre>rules_version = '2';
+<pre>rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -606,7 +557,7 @@ service cloud.firestore {
       allow read, create: if request.auth != null;
     }
 
-    match /presence/{user} {
+    match /presence/{presenceId} {
       allow read, create, update, delete:
         if request.auth != null;
     }
@@ -614,149 +565,132 @@ service cloud.firestore {
   }
 }</pre>
 
-                    <p>
-                        Then click <b>Publish</b>.
-                    </p>
+<p>
+Then click <b>Publish</b>.
+</p>
 
-                    <p class="helpNote">
-                        The online list uses a heartbeat. Users may
-                        remain visible for a few seconds after closing
-                        the page.
-                    </p>
+<p class="helpNote">
+The online list uses a separate ID for every browser tab,
+so multiple tabs can appear as separate users.
+</p>
 
-                </div>
+</div>
 
-            </details>
+</details>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
 </div>
 
 
 <div id="app">
 
-    <div class="topbar">
+<div class="topbar">
 
-        <div class="logo">
-            Natter
-        </div>
+<div class="logo">
+Natter
+</div>
 
-        <div class="room">
-            #general
-        </div>
+<div class="room">
+#general
+</div>
 
-        <div class="online">
-            ● <span id="onlineCount">0</span> online
-        </div>
+<div class="online">
+● <span id="onlineCount">0</span> online
+</div>
 
-        <button
-            id="changeName"
-            type="button"
-        >
-            name
-        </button>
-
-    </div>
-
-
-    <div class="main">
-
-        <aside class="sidebar">
-
-            <div class="sidebarTitle">
-                online — <span id="sidebarCount">0</span>
-            </div>
-
-            <div id="users"></div>
-
-        </aside>
-
-
-        <div class="chatArea">
-
-            <div class="chatHeader">
-                <span>#</span>general
-            </div>
-
-            <div id="messages">
-
-                <div class="empty">
-                    nobody has said anything yet.
-                </div>
-
-            </div>
-
-            <div class="composer">
-
-                <input
-                    id="message"
-                    autocomplete="off"
-                    maxlength="2000"
-                    placeholder="type a message..."
-                >
-
-                <button
-                    id="send"
-                    type="button"
-                >
-                    send
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
+<button id="changeName" type="button">
+name
+</button>
 
 </div>
 
 
-<div
-    id="nameModal"
-    class="modal"
+<div class="main">
+
+<aside class="sidebar">
+
+<div class="sidebarTitle">
+online — <span id="sidebarCount">0</span>
+</div>
+
+<div id="users"></div>
+
+</aside>
+
+
+<div class="chatArea">
+
+<div class="chatHeader">
+<span>#</span>general
+</div>
+
+<div id="messages">
+
+<div class="empty">
+nobody has said anything yet.
+</div>
+
+</div>
+
+<div class="composer">
+
+<input
+id="message"
+autocomplete="off"
+maxlength="2000"
+placeholder="type a message..."
 >
 
-    <div class="modalBox">
+<button id="send" type="button">
+send
+</button>
 
-        <div class="modalTitle">
-            choose a username
-        </div>
+</div>
 
-        <div class="modalContent">
+</div>
 
-            <input
-                id="nameInput"
-                maxlength="32"
-                autocomplete="off"
-                placeholder="username"
-            >
+</div>
 
-            <div class="modalButtons">
+</div>
 
-                <button
-                    id="saveName"
-                    type="button"
-                >
-                    save
-                </button>
 
-                <button
-                    id="cancelName"
-                    class="cancel"
-                    type="button"
-                >
-                    cancel
-                </button>
+<div id="nameModal" class="modal">
 
-            </div>
+<div class="modalBox">
 
-            <div id="nameError"></div>
+<div class="modalTitle">
+choose a username
+</div>
 
-        </div>
+<div class="modalContent">
 
-    </div>
+<input
+id="nameInput"
+maxlength="32"
+autocomplete="off"
+placeholder="username"
+>
+
+<div class="modalButtons">
+
+<button id="saveName" type="button">
+save
+</button>
+
+<button id="cancelName" class="cancel" type="button">
+cancel
+</button>
+
+</div>
+
+<div id="nameError"></div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -764,1061 +698,772 @@ service cloud.firestore {
 <script type="module">
 
 import {
-    initializeApp
+initializeApp
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
 import {
-    getAuth,
-    signInAnonymously,
-    onAuthStateChanged
+getAuth,
+signInAnonymously,
+onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    query,
-    orderBy,
-    limit,
-    onSnapshot,
-    serverTimestamp,
-    doc,
-    setDoc,
-    deleteDoc
+getFirestore,
+collection,
+addDoc,
+query,
+orderBy,
+limit,
+onSnapshot,
+serverTimestamp,
+doc,
+setDoc,
+deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
-let app = null;
-let auth = null;
-let db = null;
-let user = null;
+let app=null;
+let auth=null;
+let db=null;
+let user=null;
 
-let unsubscribeMessages = null;
-let unsubscribeUsers = null;
+let unsubscribeMessages=null;
+let unsubscribeUsers=null;
+let heartbeatTimer=null;
+let connected=false;
 
-let heartbeatTimer = null;
-let connected = false;
-
-let username =
-    localStorage.getItem("natter_username") || "";
-
-
-const setup =
-    document.getElementById("setup");
-
-const appScreen =
-    document.getElementById("app");
-
-const config =
-    document.getElementById("config");
-
-const connectButton =
-    document.getElementById("connect");
-
-const error =
-    document.getElementById("error");
-
-const messages =
-    document.getElementById("messages");
-
-const messageInput =
-    document.getElementById("message");
-
-const sendButton =
-    document.getElementById("send");
-
-const users =
-    document.getElementById("users");
-
-const onlineCount =
-    document.getElementById("onlineCount");
-
-const sidebarCount =
-    document.getElementById("sidebarCount");
-
-const nameModal =
-    document.getElementById("nameModal");
-
-const nameInput =
-    document.getElementById("nameInput");
-
-const nameError =
-    document.getElementById("nameError");
+let username=
+localStorage.getItem("natter_username")||"";
 
 
-const savedConfig =
-    localStorage.getItem(
-        "natter_firebase_config"
-    );
+const tabId=
+sessionStorage.getItem("natter_tab_id")||
+crypto.randomUUID();
+
+sessionStorage.setItem(
+"natter_tab_id",
+tabId
+);
+
+
+const setup=
+document.getElementById("setup");
+
+const appScreen=
+document.getElementById("app");
+
+const config=
+document.getElementById("config");
+
+const connectButton=
+document.getElementById("connect");
+
+const error=
+document.getElementById("error");
+
+const messages=
+document.getElementById("messages");
+
+const messageInput=
+document.getElementById("message");
+
+const sendButton=
+document.getElementById("send");
+
+const users=
+document.getElementById("users");
+
+const onlineCount=
+document.getElementById("onlineCount");
+
+const sidebarCount=
+document.getElementById("sidebarCount");
+
+const nameModal=
+document.getElementById("nameModal");
+
+const nameInput=
+document.getElementById("nameInput");
+
+const nameError=
+document.getElementById("nameError");
+
+
+const savedConfig=
+localStorage.getItem(
+"natter_firebase_config"
+);
 
 if(savedConfig){
-
-    config.value =
-        savedConfig;
-
+config.value=savedConfig;
 }
 
 
 function extractFirebaseConfig(input){
 
-    input =
-        input.trim();
+input=input.trim();
 
+if(!input){
+throw new Error(
+"Paste your Firebase config first."
+);
+}
 
-    if(!input){
+let jsonText=input;
 
-        throw new Error(
-            "Paste your Firebase config first."
-        );
+if(input.includes("firebaseConfig")){
 
-    }
+const start=input.indexOf("{");
+const end=input.lastIndexOf("}");
 
+if(start===-1||end===-1){
+throw new Error(
+"Couldn't find the firebaseConfig object."
+);
+}
 
-    let jsonText =
-        input;
+jsonText=input.slice(
+start,
+end+1
+);
 
+}
 
-    if(input.includes("firebaseConfig")){
+try{
 
-        const start =
-            input.indexOf("{");
+return JSON.parse(jsonText);
 
-        const end =
-            input.lastIndexOf("}");
+}catch{
 
+try{
 
-        if(
-            start === -1 ||
-            end === -1
-        ){
+const converted=
+jsonText
+.replace(
+/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,
+'$1"$2":'
+)
+.replace(
+/'/g,
+'"'
+);
 
-            throw new Error(
-                "Couldn't find the firebaseConfig object."
-            );
+return JSON.parse(converted);
 
-        }
+}catch{
 
+throw new Error(
+"Couldn't read the Firebase config. Paste the complete firebaseConfig block."
+);
 
-        jsonText =
-            input.slice(
-                start,
-                end + 1
-            );
+}
 
-    }
-
-
-    try{
-
-        return JSON.parse(
-            jsonText
-        );
-
-    }catch{
-
-        try{
-
-            const converted =
-                jsonText
-                .replace(
-                    /([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,
-                    '$1"$2":'
-                )
-                .replace(
-                    /'/g,
-                    '"'
-                );
-
-
-            return JSON.parse(
-                converted
-            );
-
-        }catch{
-
-            throw new Error(
-                "Couldn't read the Firebase config. Paste the complete firebaseConfig block."
-            );
-
-        }
-
-    }
+}
 
 }
 
 
 async function connect(){
 
-    if(connected){
-        return;
-    }
+if(connected)return;
 
+error.textContent="";
 
-    error.textContent =
-        "";
+let firebaseConfig;
 
+try{
 
-    let firebaseConfig;
+firebaseConfig=
+extractFirebaseConfig(
+config.value
+);
 
+}catch(e){
 
-    try{
+error.textContent=e.message;
+return;
 
-        firebaseConfig =
-            extractFirebaseConfig(
-                config.value
-            );
+}
 
-    }catch(e){
+if(
+!firebaseConfig.apiKey||
+!firebaseConfig.authDomain||
+!firebaseConfig.projectId||
+!firebaseConfig.appId
+){
 
-        error.textContent =
-            e.message;
+error.textContent=
+"The Firebase config is missing apiKey, authDomain, projectId, or appId.";
 
-        return;
+return;
 
-    }
+}
 
+connectButton.disabled=true;
+connectButton.textContent="connecting...";
 
-    if(
-        !firebaseConfig.apiKey ||
-        !firebaseConfig.authDomain ||
-        !firebaseConfig.projectId ||
-        !firebaseConfig.appId
-    ){
+try{
 
-        error.textContent =
-            "The Firebase config is missing apiKey, authDomain, projectId, or appId.";
+app=initializeApp(firebaseConfig);
 
-        return;
+auth=getAuth(app);
 
-    }
+db=getFirestore(app);
 
+localStorage.setItem(
+"natter_firebase_config",
+JSON.stringify(firebaseConfig)
+);
 
-    connectButton.disabled =
-        true;
+onAuthStateChanged(
+auth,
+handleAuthChange
+);
 
-    connectButton.textContent =
-        "connecting...";
+await signInAnonymously(auth);
 
+connected=true;
 
-    try{
+}catch(e){
 
-        app =
-            initializeApp(
-                firebaseConfig
-            );
+console.error(e);
 
+connectButton.disabled=false;
+connectButton.textContent="connect";
 
-        auth =
-            getAuth(app);
+error.textContent=
+e.code
+?e.code+": "+e.message
+:e.message;
 
-
-        db =
-            getFirestore(app);
-
-
-        localStorage.setItem(
-            "natter_firebase_config",
-            JSON.stringify(
-                firebaseConfig
-            )
-        );
-
-
-        onAuthStateChanged(
-            auth,
-            handleAuthChange
-        );
-
-
-        await signInAnonymously(
-            auth
-        );
-
-
-        connected =
-            true;
-
-
-    }catch(e){
-
-        console.error(e);
-
-
-        connectButton.disabled =
-            false;
-
-        connectButton.textContent =
-            "connect";
-
-
-        error.textContent =
-            e.code
-            ? e.code + ": " + e.message
-            : e.message;
-
-    }
+}
 
 }
 
 
 async function handleAuthChange(firebaseUser){
 
-    if(!firebaseUser){
+if(!firebaseUser){
 
-        user =
-            null;
+user=null;
+return;
 
-        return;
+}
 
-    }
+user=firebaseUser;
 
+setup.style.display="none";
+appScreen.style.display="flex";
 
-    user =
-        firebaseUser;
+updateCurrentUser();
 
+if(!username){
+openName();
+}
 
-    setup.style.display =
-        "none";
-
-    appScreen.style.display =
-        "flex";
-
-
-    currentUserName();
-
-
-    if(!username){
-
-        openName();
-
-    }
-
-
-    startRealtimeMessages();
-
-    startPresence();
+startRealtimeMessages();
+startPresence();
 
 }
 
 
-function currentUserName(){
+function updateCurrentUser(){
 
-    return username ||
-        "anonymous";
+const name=
+document.getElementById("currentUser");
+
+if(name){
+name.textContent=
+username||"anonymous";
+}
 
 }
 
 
 function startRealtimeMessages(){
 
-    if(unsubscribeMessages){
+if(unsubscribeMessages){
+unsubscribeMessages();
+}
 
-        unsubscribeMessages();
+const messagesRef=
+collection(db,"messages");
 
-        unsubscribeMessages =
-            null;
+const messagesQuery=
+query(
+messagesRef,
+orderBy("createdAt","asc"),
+limit(100)
+);
 
-    }
+unsubscribeMessages=
+onSnapshot(
+messagesQuery,
+snapshot=>{
+renderMessages(snapshot);
+},
+e=>{
+console.error(e);
 
+messages.innerHTML=
+'<div class="empty" style="color:#ff7777">could not load messages.</div>';
 
-    const messagesRef =
-        collection(
-            db,
-            "messages"
-        );
-
-
-    const messagesQuery =
-        query(
-            messagesRef,
-            orderBy(
-                "createdAt",
-                "asc"
-            ),
-            limit(100)
-        );
-
-
-    unsubscribeMessages =
-        onSnapshot(
-
-            messagesQuery,
-
-            snapshot=>{
-
-                renderMessages(
-                    snapshot
-                );
-
-            },
-
-            e=>{
-
-                console.error(
-                    "Message listener error:",
-                    e
-                );
-
-
-                messages.innerHTML =
-                    '<div class="empty" style="color:#ff7777">could not load messages.</div>';
-
-            }
-
-        );
+}
+);
 
 }
 
 
 function renderMessages(snapshot){
 
-    messages.innerHTML =
-        "";
+messages.innerHTML="";
 
+if(snapshot.empty){
 
-    if(snapshot.empty){
+messages.innerHTML=
+'<div class="empty">nobody has said anything yet.</div>';
 
-        messages.innerHTML =
-            '<div class="empty">nobody has said anything yet.</div>';
+return;
 
-        return;
+}
 
-    }
+snapshot.forEach(
+docSnap=>{
 
+const msg=docSnap.data();
 
-    snapshot.forEach(
-        docSnap=>{
+const wrapper=
+document.createElement("div");
 
-            const msg =
-                docSnap.data();
+wrapper.className="message";
 
+const header=
+document.createElement("div");
 
-            const wrapper =
-                document.createElement(
-                    "div"
-                );
+header.className="messageHeader";
 
-            wrapper.className =
-                "message";
+const name=
+document.createElement("span");
 
+name.className="username";
 
-            const header =
-                document.createElement(
-                    "div"
-                );
+name.textContent=
+msg.name||"anonymous";
 
-            header.className =
-                "messageHeader";
+const time=
+document.createElement("span");
 
+time.className="time";
 
-            const name =
-                document.createElement(
-                    "span"
-                );
+if(
+msg.createdAt&&
+typeof msg.createdAt.toDate==="function"
+){
 
-            name.className =
-                "username";
+time.textContent=
+msg.createdAt
+.toDate()
+.toLocaleTimeString(
+[],
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
 
-            name.textContent =
-                msg.name ||
-                "anonymous";
+}else{
 
+time.textContent="now";
 
-            const time =
-                document.createElement(
-                    "span"
-                );
+}
 
-            time.className =
-                "time";
+const text=
+document.createElement("div");
 
+text.className="messageText";
 
-            if(
-                msg.createdAt &&
-                typeof msg.createdAt.toDate ===
-                "function"
-            ){
+text.textContent=
+msg.text||"";
 
-                time.textContent =
-                    msg.createdAt
-                    .toDate()
-                    .toLocaleTimeString(
-                        [],
-                        {
-                            hour:"2-digit",
-                            minute:"2-digit"
-                        }
-                    );
+header.append(name,time);
+wrapper.append(header,text);
 
-            }else{
+messages.appendChild(wrapper);
 
-                time.textContent =
-                    "now";
+}
+);
 
-            }
-
-
-            const text =
-                document.createElement(
-                    "div"
-                );
-
-            text.className =
-                "messageText";
-
-            text.textContent =
-                msg.text ||
-                "";
-
-
-            header.append(
-                name,
-                time
-            );
-
-
-            wrapper.append(
-                header,
-                text
-            );
-
-
-            messages.appendChild(
-                wrapper
-            );
-
-        }
-    );
-
-
-    messages.scrollTop =
-        messages.scrollHeight;
+messages.scrollTop=
+messages.scrollHeight;
 
 }
 
 
 async function sendMessage(){
 
-    if(!user){
-        return;
-    }
+if(!user)return;
 
+if(!username){
 
-    if(!username){
+openName();
+return;
 
-        openName();
+}
 
-        return;
+const text=
+messageInput.value.trim();
 
-    }
+if(!text)return;
 
+messageInput.value="";
 
-    const text =
-        messageInput.value.trim();
+sendButton.disabled=true;
 
+try{
 
-    if(!text){
-        return;
-    }
+await addDoc(
+collection(db,"messages"),
+{
+text:text,
+name:username,
+uid:user.uid,
+createdAt:serverTimestamp()
+}
+);
 
+}catch(e){
 
-    messageInput.value =
-        "";
+console.error(e);
 
+messageInput.value=text;
 
-    sendButton.disabled =
-        true;
+alert(
+"Couldn't send the message.\n\n"+
+e.message
+);
 
+}finally{
 
-    try{
+sendButton.disabled=false;
+messageInput.focus();
 
-        await addDoc(
-            collection(
-                db,
-                "messages"
-            ),
-            {
-                text:text,
-                name:username,
-                uid:user.uid,
-                createdAt:
-                    serverTimestamp()
-            }
-        );
-
-    }catch(e){
-
-        console.error(
-            "Send error:",
-            e
-        );
-
-
-        messageInput.value =
-            text;
-
-
-        alert(
-            "Couldn't send the message.\n\n" +
-            e.message
-        );
-
-    }finally{
-
-        sendButton.disabled =
-            false;
-
-        messageInput.focus();
-
-    }
+}
 
 }
 
 
 async function updatePresence(){
 
-    if(!user || !db){
-        return;
-    }
+if(!db)return;
 
+try{
 
-    try{
+await setDoc(
+doc(
+db,
+"presence",
+tabId
+),
+{
+uid:user?user.uid:"",
+name:username||"anonymous",
+lastSeen:Date.now()
+},
+{
+merge:true
+}
+);
 
-        await setDoc(
-            doc(
-                db,
-                "presence",
-                user.uid
-            ),
-            {
-                uid:user.uid,
-                name:currentUserName(),
-                lastSeen:serverTimestamp()
-            },
-            {
-                merge:true
-            }
-        );
+}catch(e){
 
-    }catch(e){
+console.error(
+"Presence update failed:",
+e
+);
 
-        console.error(
-            "Presence update failed:",
-            e
-        );
-
-    }
+}
 
 }
 
 
 async function removePresence(){
 
-    if(!user || !db){
-        return;
-    }
+if(!db)return;
 
+try{
 
-    try{
+await deleteDoc(
+doc(
+db,
+"presence",
+tabId
+)
+);
 
-        await deleteDoc(
-            doc(
-                db,
-                "presence",
-                user.uid
-            )
-        );
+}catch(e){
 
-    }catch(e){
+console.error(
+"Presence removal failed:",
+e
+);
 
-        console.error(
-            "Presence removal failed:",
-            e
-        );
-
-    }
+}
 
 }
 
 
 function startPresence(){
 
-    updatePresence();
+updatePresence();
 
+if(heartbeatTimer){
+clearInterval(heartbeatTimer);
+}
 
-    if(heartbeatTimer){
+heartbeatTimer=
+setInterval(
+updatePresence,
+10000
+);
 
-        clearInterval(
-            heartbeatTimer
-        );
-
-    }
-
-
-    heartbeatTimer =
-        setInterval(
-            updatePresence,
-            10000
-        );
-
-
-    startPresenceListener();
+startPresenceListener();
 
 }
 
 
 function startPresenceListener(){
 
-    if(unsubscribeUsers){
+if(unsubscribeUsers){
+unsubscribeUsers();
+}
 
-        unsubscribeUsers();
+const presenceRef=
+collection(
+db,
+"presence"
+);
 
-        unsubscribeUsers =
-            null;
+unsubscribeUsers=
+onSnapshot(
+presenceRef,
+snapshot=>{
 
-    }
+const now=Date.now();
+const activeUsers=[];
 
+snapshot.forEach(
+docSnap=>{
 
-    const presenceRef =
-        collection(
-            db,
-            "presence"
-        );
+const data=docSnap.data();
 
+if(
+typeof data.lastSeen==="number"&&
+now-data.lastSeen<30000
+){
 
-    unsubscribeUsers =
-        onSnapshot(
+activeUsers.push({
+...data,
+presenceId:docSnap.id
+});
 
-            presenceRef,
+}
 
-            snapshot=>{
+}
+);
 
-                const now =
-                    Date.now();
+renderUsers(activeUsers);
 
-
-                const activeUsers =
-                    [];
-
-
-                snapshot.forEach(
-                    docSnap=>{
-
-                        const data =
-                            docSnap.data();
-
-
-                        let lastSeen =
-                            0;
-
-
-                        if(
-                            data.lastSeen &&
-                            typeof data.lastSeen.toMillis ===
-                            "function"
-                        ){
-
-                            lastSeen =
-                                data.lastSeen.toMillis();
-
-                        }
-
-
-                        if(
-                            lastSeen &&
-                            now - lastSeen <
-                            30000
-                        ){
-
-                            activeUsers.push(
-                                data
-                            );
-
-                        }
-
-                    }
-                );
-
-
-                renderUsers(
-                    activeUsers
-                );
-
-            },
-
-            e=>{
-
-                console.error(
-                    "Presence listener error:",
-                    e
-                );
-
-            }
-
-        );
+},
+e=>{
+console.error(
+"Presence listener error:",
+e
+);
+}
+);
 
 }
 
 
 function renderUsers(activeUsers){
 
-    activeUsers.sort(
-        (a,b)=>{
+activeUsers.sort(
+(a,b)=>{
 
-            if(a.uid === user?.uid){
-                return -1;
-            }
+if(a.presenceId===tabId)return-1;
+if(b.presenceId===tabId)return 1;
 
-            if(b.uid === user?.uid){
-                return 1;
-            }
+return(
+a.name||""
+).localeCompare(
+b.name||""
+);
 
-            return (
-                a.name || ""
-            ).localeCompare(
-                b.name || ""
-            );
+}
+);
 
-        }
-    );
+users.innerHTML="";
 
+activeUsers.forEach(
+person=>{
 
-    users.innerHTML =
-        "";
+const row=
+document.createElement("div");
 
+row.className="user";
 
-    activeUsers.forEach(
-        person=>{
+if(person.presenceId===tabId){
+row.classList.add("you");
+}
 
-            const row =
-                document.createElement(
-                    "div"
-                );
+const dot=
+document.createElement("span");
 
-            row.className =
-                "user";
+dot.className="userDot";
+dot.textContent="●";
 
+const name=
+document.createElement("span");
 
-            if(
-                person.uid ===
-                user?.uid
-            ){
+name.className="userName";
 
-                row.classList.add(
-                    "you"
-                );
+name.textContent=
+person.name||"anonymous";
 
-            }
+if(person.presenceId===tabId){
+name.textContent+=" (you)";
+}
 
+row.append(dot,name);
 
-            const dot =
-                document.createElement(
-                    "span"
-                );
+users.appendChild(row);
 
-            dot.className =
-                "userDot";
+}
+);
 
-            dot.textContent =
-                "●";
+const count=activeUsers.length;
 
-
-            const name =
-                document.createElement(
-                    "span"
-                );
-
-            name.className =
-                "userName";
-
-            name.textContent =
-                person.name ||
-                "anonymous";
-
-
-            if(
-                person.uid ===
-                user?.uid
-            ){
-
-                name.textContent +=
-                    " (you)";
-
-            }
-
-
-            row.append(
-                dot,
-                name
-            );
-
-
-            users.appendChild(
-                row
-            );
-
-        }
-    );
-
-
-    const count =
-        activeUsers.length;
-
-
-    onlineCount.textContent =
-        count;
-
-    sidebarCount.textContent =
-        count;
+onlineCount.textContent=count;
+sidebarCount.textContent=count;
 
 }
 
 
 function openName(){
 
-    nameInput.value =
-        username;
+nameInput.value=username;
+nameError.textContent="";
+nameModal.style.display="flex";
 
-
-    nameError.textContent =
-        "";
-
-
-    nameModal.style.display =
-        "flex";
-
-
-    setTimeout(
-        ()=>{
-            nameInput.focus();
-        },
-        50
-    );
+setTimeout(
+()=>{
+nameInput.focus();
+},
+50
+);
 
 }
 
 
 async function saveName(){
 
-    const value =
-        nameInput.value.trim();
+const value=
+nameInput.value.trim();
 
+if(!value){
 
-    if(!value){
+nameError.textContent=
+"Enter a username.";
 
-        nameError.textContent =
-            "Enter a username.";
+return;
 
-        return;
+}
 
-    }
+username=value.slice(0,32);
 
+localStorage.setItem(
+"natter_username",
+username
+);
 
-    username =
-        value.slice(
-            0,
-            32
-        );
+nameModal.style.display="none";
 
+updateCurrentUser();
 
-    localStorage.setItem(
-        "natter_username",
-        username
-    );
+await updatePresence();
 
-
-    nameModal.style.display =
-        "none";
-
-
-    await updatePresence();
-
-
-    messageInput.focus();
+messageInput.focus();
 
 }
 
 
 connectButton.addEventListener(
-    "click",
-    connect
+"click",
+connect
 );
-
 
 sendButton.addEventListener(
-    "click",
-    sendMessage
+"click",
+sendMessage
 );
-
 
 messageInput.addEventListener(
-    "keydown",
-    e=>{
+"keydown",
+e=>{
 
-        if(e.key === "Enter"){
+if(e.key==="Enter"){
 
-            e.preventDefault();
+e.preventDefault();
+sendMessage();
 
-            sendMessage();
+}
 
-        }
-
-    }
+}
 );
-
 
 document.getElementById("changeName")
 .addEventListener(
-    "click",
-    openName
+"click",
+openName
 );
-
 
 document.getElementById("saveName")
 .addEventListener(
-    "click",
-    saveName
+"click",
+saveName
 );
-
 
 document.getElementById("cancelName")
 .addEventListener(
-    "click",
-    ()=>{
-        nameModal.style.display =
-            "none";
-    }
+"click",
+()=>{
+nameModal.style.display="none";
+}
 );
-
 
 nameInput.addEventListener(
-    "keydown",
-    e=>{
+"keydown",
+e=>{
 
-        if(e.key === "Enter"){
+if(e.key==="Enter"){
 
-            e.preventDefault();
+e.preventDefault();
+saveName();
 
-            saveName();
+}
 
-        }
+if(e.key==="Escape"){
+nameModal.style.display="none";
+}
 
-        if(e.key === "Escape"){
-
-            nameModal.style.display =
-                "none";
-
-        }
-
-    }
+}
 );
 
-
 window.addEventListener(
-    "beforeunload",
-    ()=>{
-        removePresence();
-    }
+"beforeunload",
+()=>{
+removePresence();
+}
 );
 
 </script>

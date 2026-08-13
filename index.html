@@ -33,6 +33,9 @@ cursor:pointer;
 #setup{
 width:100%;
 height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
 overflow-y:auto;
 padding:30px 15px;
 }
@@ -84,37 +87,29 @@ background:#3b3b62;
 border:1px solid #686890;
 }
 
+#connect:hover{
+background:#484879;
+}
+
+.guideButton{
+display:inline-block;
+margin-top:8px;
+padding:5px 12px;
+background:#20202f;
+border:1px solid #46465d;
+color:#bbb;
+text-decoration:none;
+}
+
+.guideButton:hover{
+background:#30304a;
+color:#fff;
+}
+
 #error{
 color:#ff7777;
 margin-top:8px;
 white-space:pre-wrap;
-}
-
-.help{
-margin-top:14px;
-border-top:1px solid #30303d;
-padding-top:10px;
-}
-
-.help summary{
-color:#9d9db7;
-cursor:pointer;
-}
-
-.helpContent{
-margin-top:11px;
-color:#aaaab7;
-line-height:1.5;
-}
-
-.helpContent pre{
-background:#09090d;
-border:1px solid #30303d;
-padding:8px;
-overflow-x:auto;
-color:#bbb;
-font-family:monospace;
-font-size:11px;
 }
 
 #app{
@@ -292,15 +287,6 @@ text-align:center;
 padding-top:35px;
 }
 
-.chatDisabled{
-display:none;
-padding:9px;
-background:#201d12;
-border-top:1px solid #66582b;
-color:#ffd65a;
-text-align:center;
-}
-
 .composer{
 display:flex;
 padding:7px;
@@ -463,82 +449,9 @@ color:#ffd65a;
 
 <button id="connect" type="button">connect</button>
 
+<a href="/guide.html" class="guideButton">📖 Server Guide</a>
+
 <div id="error"></div>
-
-<details class="help">
-
-<summary>how do i set this up?</summary>
-
-<div class="helpContent">
-
-<p>Enable Anonymous Authentication and create a Firestore database in your Firebase project.</p>
-
-<p>Use these Firestore Rules:</p>
-
-<pre>rules_version = '2';
-
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    match /messages/{message} {
-      allow read: if request.auth != null;
-
-      allow create: if request.auth != null
-        && (
-          !exists(/databases/$(database)/documents/server/settings)
-          || get(/databases/$(database)/documents/server/settings).data.disableChat != true
-          || (
-            exists(/databases/$(database)/documents/server/claim)
-            && get(/databases/$(database)/documents/server/claim).data.ownerId == request.auth.uid
-          )
-        );
-    }
-
-    match /presence/{presenceId} {
-      allow read, create, update, delete:
-        if request.auth != null;
-    }
-
-    match /server/claim {
-      allow read: if request.auth != null;
-
-      allow create: if request.auth != null;
-
-      allow update: if request.auth != null
-        && resource.data.ownerId == null
-        && request.resource.data.ownerId == request.auth.uid;
-
-      allow delete: if request.auth != null
-        && resource.data.ownerId == request.auth.uid;
-    }
-
-    match /server/settings {
-      allow read: if request.auth != null;
-
-      allow create, update: if request.auth != null;
-
-      allow delete: if request.auth != null
-        && resource.data.ownerId == request.auth.uid;
-    }
-  }
-}</pre>
-
-<p>Then create:</p>
-
-<pre>server
-└── settings
-    ├── serverName: "general"
-    └── disableChat: false</pre>
-
-<p><b>disableChat</b> must be a Boolean.</p>
-
-<p>Use <b>true</b> to make the chat owner-only and <b>false</b> to allow everyone to chat.</p>
-
-<p>There is intentionally no button in Natter for changing this. It is controlled through Firestore.</p>
-
-</div>
-
-</details>
 
 </div>
 </div>
@@ -583,10 +496,6 @@ online — <span id="sidebarCount">0</span>
 
 <div id="messages">
 <div class="empty">nobody has said anything yet.</div>
-</div>
-
-<div id="chatDisabled" class="chatDisabled">
-🔒 Chat is currently disabled by the server owner.
 </div>
 
 <div class="composer">
@@ -729,7 +638,6 @@ let unsubscribeClaim;
 let unsubscribeSettings;
 
 let serverOwnerId=null;
-let chatDisabled=false;
 let claimCode=null;
 let heartbeatTimer=null;
 
@@ -768,9 +676,6 @@ const claimModal=document.getElementById("claimModal");
 const claimCodeElement=document.getElementById("claimCode");
 const claimStatus=document.getElementById("claimStatus");
 const claimOwnerInfo=document.getElementById("claimOwnerInfo");
-
-const chatDisabledElement=
-document.getElementById("chatDisabled");
 
 const claimButton=
 document.getElementById("claimServer");
@@ -928,35 +833,6 @@ serverOwnerId===user.uid
 }
 
 
-function updateChatState(){
-
-const locked=
-chatDisabled===true&&!isOwner();
-
-messageInput.disabled=locked;
-sendButton.disabled=locked;
-
-if(locked){
-
-messageInput.placeholder=
-"chat is disabled by the owner";
-
-chatDisabledElement.style.display=
-"block";
-
-}else{
-
-messageInput.placeholder=
-"type a message...";
-
-chatDisabledElement.style.display=
-"none";
-
-}
-
-}
-
-
 function startSettingsListener(){
 
 if(unsubscribeSettings){
@@ -990,13 +866,6 @@ data.serverName
 
 }
 
-chatDisabled=
-data.disableChat===true;
-
-}else{
-
-chatDisabled=false;
-
 }
 
 serverNameElement.textContent=
@@ -1008,8 +877,6 @@ serverName;
 document.title=
 "Natter - #"+serverName;
 
-updateChatState();
-
 },
 e=>{
 
@@ -1017,9 +884,6 @@ console.error(
 "Settings error:",
 e
 );
-
-chatDisabled=false;
-updateChatState();
 
 }
 );
@@ -1045,7 +909,6 @@ if(!snapshot.exists()){
 
 serverOwnerId=null;
 updateOwnerUI();
-updateChatState();
 
 return;
 
@@ -1072,7 +935,6 @@ user.uid
 }
 
 updateOwnerUI();
-updateChatState();
 
 }
 );
@@ -1226,13 +1088,6 @@ async function sendMessage(){
 
 if(!user)return;
 
-if(chatDisabled&&!isOwner()){
-
-updateChatState();
-return;
-
-}
-
 if(!username){
 
 openName();
@@ -1246,7 +1101,6 @@ messageInput.value.trim();
 if(!text)return;
 
 messageInput.value="";
-
 sendButton.disabled=true;
 
 try{
@@ -1268,25 +1122,14 @@ console.error(e);
 
 messageInput.value=text;
 
-if(e.code==="permission-denied"){
-
-alert(
-"Chat is disabled for non-owners."
-);
-
-}else{
-
 alert(
 "Couldn't send the message.\n\n"+
 e.message
 );
 
-}
-
 }finally{
 
-updateChatState();
-
+sendButton.disabled=false;
 messageInput.focus();
 
 }
@@ -1610,7 +1453,6 @@ if(data.ownerId){
 serverOwnerId=data.ownerId;
 
 updateOwnerUI();
-updateChatState();
 
 if(isOwner()){
 

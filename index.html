@@ -91,19 +91,34 @@ border:1px solid #686890;
 background:#484879;
 }
 
-.guideButton{
+.guideButton,
+.officialButton{
 display:inline-block;
 margin-top:8px;
 padding:5px 12px;
-background:#20202f;
 border:1px solid #46465d;
 color:#bbb;
 text-decoration:none;
+cursor:pointer;
+}
+
+.guideButton{
+background:#20202f;
 }
 
 .guideButton:hover{
 background:#30304a;
 color:#fff;
+}
+
+.officialButton{
+background:#292942;
+border-color:#686890;
+color:#fff;
+}
+
+.officialButton:hover{
+background:#3b3b62;
 }
 
 #error{
@@ -451,6 +466,10 @@ color:#ffd65a;
 
 <a href="/guide.html" class="guideButton">📖 Server Guide</a>
 
+<button id="officialServer" class="officialButton" type="button">
+⭐ Official #natter Server
+</button>
+
 <div id="error"></div>
 
 </div>
@@ -659,6 +678,7 @@ const appScreen=document.getElementById("app");
 const config=document.getElementById("config");
 const connectButton=document.getElementById("connect");
 const error=document.getElementById("error");
+const officialServer=document.getElementById("officialServer");
 
 const messages=document.getElementById("messages");
 const messageInput=document.getElementById("message");
@@ -687,12 +707,44 @@ const chatNameElement=
 document.getElementById("chatName");
 
 
+const OFFICIAL_FIREBASE_CONFIG=
+JSON.stringify({
+apiKey:"AIzaSyD7XZ9p2eQNcOBzkm9roabXpgnuCPrkVW8",
+authDomain:"chatroom-70964.firebaseapp.com",
+projectId:"chatroom-70964",
+storageBucket:"chatroom-70964.firebasestorage.app",
+messagingSenderId:"449574132138",
+appId:"1:449574132138:web:f7190693bde2c7b94c33d3",
+measurementId:"G-C4SFSBW2WT"
+});
+
+
 const savedConfig=
 localStorage.getItem("natter_firebase_config");
 
 if(savedConfig){
 config.value=savedConfig;
 }
+
+
+officialServer.addEventListener(
+"click",
+()=>{
+
+config.value=
+OFFICIAL_FIREBASE_CONFIG;
+
+localStorage.setItem(
+"natter_firebase_config",
+OFFICIAL_FIREBASE_CONFIG
+);
+
+error.textContent="";
+
+config.focus();
+
+}
+);
 
 
 function parseConfig(input){

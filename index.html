@@ -26,7 +26,9 @@ font-family:Tahoma,Verdana,Arial,sans-serif;
 font-size:13px;
 }
 
-button{cursor:pointer}
+button{
+cursor:pointer;
+}
 
 #setup{
 width:100%;
@@ -88,11 +90,6 @@ border:1px solid #686890;
 
 #connect:hover{
 background:#484879;
-}
-
-#connect:disabled{
-opacity:.6;
-cursor:default;
 }
 
 #error{
@@ -208,11 +205,6 @@ border:1px solid #46465d;
 .topButton:hover{
 color:#fff;
 background:#30304a;
-}
-
-.topButton:disabled{
-opacity:.5;
-cursor:default;
 }
 
 .main{
@@ -521,43 +513,12 @@ background:#201d12;
 color:#ffd65a;
 }
 
-.settingInfo{
-color:#aaaab7;
-line-height:1.5;
-}
-
-.settingState{
-margin:10px 0;
-padding:9px;
-border:1px solid #30303d;
-background:#09090d;
-}
-
-.settingState.enabled{
-color:#ffd65a;
-border-color:#66582b;
-}
-
-.settingState.disabled{
-color:#78d878;
-border-color:#315e31;
-}
-
 @media(max-width:600px){
 .sidebar{
 display:none;
 }
 
 .room{
-display:none;
-}
-
-.online{
-margin-left:auto;
-}
-
-#claimServer,
-#toggleChat{
 display:none;
 }
 }
@@ -608,52 +569,16 @@ how do i set this up?
 <div class="helpContent">
 
 <ol>
-
-<li>
-Open
-<a href="https://console.firebase.google.com/" target="_blank" rel="noopener">
-Firebase Console
-</a>.
-</li>
-
-<li>
-Create or open a Firebase project.
-</li>
-
-<li>
-Add a <b>Web</b> app.
-</li>
-
-<li>
-Copy the Firebase config and paste it above.
-</li>
-
+<li>Open Firebase Console and create or open your project.</li>
+<li>Add a Web app.</li>
+<li>Copy its Firebase config and paste it above.</li>
+<li>Enable Anonymous Authentication.</li>
+<li>Create Firestore Database.</li>
 </ol>
-
-<hr>
 
 <p>
-<b>Enable Anonymous Authentication:</b>
+<b>Use these Firestore Rules:</b>
 </p>
-
-<ol>
-<li>Open <b>Authentication</b>.</li>
-<li>Open <b>Sign-in method</b>.</li>
-<li>Enable <b>Anonymous</b>.</li>
-</ol>
-
-<hr>
-
-<p>
-<b>Create Firestore:</b>
-</p>
-
-<ol>
-<li>Open <b>Firestore Database</b>.</li>
-<li>Create the database.</li>
-<li>Open the <b>Rules</b> tab.</li>
-<li>Replace the rules with these:</li>
-</ol>
 
 <pre>rules_version = '2';
 
@@ -691,56 +616,35 @@ service cloud.firestore {
     match /server/settings {
       allow read: if request.auth != null;
 
-      allow create: if request.auth != null
-        && get(/databases/$(database)/documents/server/claim).data.ownerId == request.auth.uid;
-
-      allow update: if request.auth != null
-        && get(/databases/$(database)/documents/server/claim).data.ownerId == request.auth.uid;
+      allow create, update: if request.auth != null;
 
       allow delete: if request.auth != null
-        && get(/databases/$(database)/documents/server/claim).data.ownerId == request.auth.uid;
+        && resource.data.ownerId == request.auth.uid;
     }
 
   }
 }</pre>
 
 <p>
-Click <b>Publish</b>.
-</p>
-
-<hr>
-
-<p>
-<b>Server name:</b>
+<b>Server settings:</b>
 </p>
 
 <pre>server
 └── settings
-    └── serverName: "general"
+    ├── serverName: "general"
     └── disableChat: false</pre>
 
 <p>
-Change <b>serverName</b> to change the channel name.
+Change <b>serverName</b> to change the <b>#channel name</b>.
 </p>
 
 <p>
 Change <b>disableChat</b> to <b>true</b> to make the chat owner-only.
 </p>
 
-<hr>
-
 <p>
-<b>Claim your server:</b>
+Natter watches this setting in realtime, so changing it in Firestore updates the chat without reloading.
 </p>
-
-<ol>
-<li>Use Natter's <b>claim</b> button.</li>
-<li>Create <b>server → claim</b>.</li>
-<li>Put Natter's generated code into the <b>code</b> field.</li>
-<li>Natter will verify it and save your Firebase UID as the owner.</li>
-</ol>
-
-<hr>
 
 <p>
 <b>Owner messages:</b>
@@ -749,11 +653,11 @@ Change <b>disableChat</b> to <b>true</b> to make the chat owner-only.
 <pre>owner: true</pre>
 
 <p>
-Owner messages keep their 👑 tag after reloading.
+Owner messages keep their 👑 owner tag after reloading.
 </p>
 
 <p class="helpNote">
-The chat lock is enforced by Firestore Rules, so users cannot bypass it by writing directly to Firebase.
+disableChat is intentionally not editable from Natter. It is controlled directly through Firestore, just like serverName.
 </p>
 
 </div>
@@ -782,10 +686,6 @@ Natter
 <div class="online">
 ● <span id="onlineCount">0</span> online
 </div>
-
-<button id="toggleChat" class="topButton" type="button">
-🔒 lock chat
-</button>
 
 <button id="claimServer" class="topButton" type="button">
 claim
@@ -898,31 +798,26 @@ Claim this server
 <div id="claimOwnerInfo"></div>
 
 <div class="claimIntro">
-To prove that you own this Firebase project, Natter needs you to edit one Firestore document.
+To prove that you own this Firebase project, edit a specific Firestore document.
 </div>
 
 <div class="claimStep">
-<b>1.</b> Open Firebase Console and go to:
+<b>1.</b> Open:
 <span class="claimPath">Firestore Database → Data</span>
 </div>
 
 <div class="claimStep">
-<b>2.</b> Create a collection called:
-<span class="claimPath">server</span>
+<b>2.</b> Create:
+<span class="claimPath">server → claim</span>
 </div>
 
 <div class="claimStep">
-<b>3.</b> Create a document with the ID:
-<span class="claimPath">claim</span>
-</div>
-
-<div class="claimStep">
-<b>4.</b> Add a field called <b>code</b> with this value:
+<b>3.</b> Add a field called <b>code</b> with this value:
 <span id="claimCode" class="claimCode"></span>
 </div>
 
 <div class="claimStep">
-<b>5.</b> Save the document.
+<b>4.</b> Save the document.
 </div>
 
 <div id="claimStatus" class="claimStatus">
@@ -967,8 +862,7 @@ onSnapshot,
 serverTimestamp,
 doc,
 setDoc,
-deleteDoc,
-getDoc
+deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 
@@ -1065,9 +959,6 @@ document.getElementById("claimOwnerInfo");
 const claimButton=
 document.getElementById("claimServer");
 
-const toggleChatButton=
-document.getElementById("toggleChat");
-
 const chatDisabledElement=
 document.getElementById("chatDisabled");
 
@@ -1109,10 +1000,7 @@ throw new Error(
 );
 }
 
-jsonText=input.slice(
-start,
-end+1
-);
+jsonText=input.slice(start,end+1);
 
 }
 
@@ -1130,10 +1018,7 @@ jsonText
 /([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,
 '$1"$2":'
 )
-.replace(
-/'/g,
-'"'
-);
+.replace(/'/g,'"');
 
 return JSON.parse(converted);
 
@@ -1161,9 +1046,7 @@ let firebaseConfig;
 try{
 
 firebaseConfig=
-extractFirebaseConfig(
-config.value
-);
+extractFirebaseConfig(config.value);
 
 }catch(e){
 
@@ -1192,9 +1075,7 @@ connectButton.textContent="connecting...";
 try{
 
 app=initializeApp(firebaseConfig);
-
 auth=getAuth(app);
-
 db=getFirestore(app);
 
 localStorage.setItem(
@@ -1265,10 +1146,7 @@ rememberedOwnerId===user.uid
 
 function updateChatUI(){
 
-const owner=
-isOwner();
-
-if(chatDisabled&&!owner){
+if(chatDisabled&&!isOwner()){
 
 messageInput.disabled=true;
 sendButton.disabled=true;
@@ -1288,23 +1166,6 @@ messageInput.placeholder=
 "type a message...";
 
 chatDisabledElement.style.display=
-"none";
-
-}
-
-if(owner){
-
-toggleChatButton.style.display=
-"block";
-
-toggleChatButton.textContent=
-chatDisabled
-?"🔓 enable chat"
-:"🔒 lock chat";
-
-}else{
-
-toggleChatButton.style.display=
 "none";
 
 }
@@ -1380,7 +1241,6 @@ const name=
 document.createElement("span");
 
 name.className="username";
-
 name.textContent=
 msg.name||"anonymous";
 
@@ -1392,9 +1252,7 @@ const badge=
 document.createElement("span");
 
 badge.className="messageOwner";
-
-badge.textContent=
-"👑 owner";
+badge.textContent="👑 owner";
 
 header.appendChild(badge);
 
@@ -1433,7 +1291,6 @@ const text=
 document.createElement("div");
 
 text.className="messageText";
-
 text.textContent=
 msg.text||"";
 
@@ -1456,9 +1313,7 @@ async function sendMessage(){
 if(!user)return;
 
 if(chatDisabled&&!isOwner()){
-
 return;
-
 }
 
 if(!username){
@@ -1476,9 +1331,6 @@ if(!text)return;
 messageInput.value="";
 sendButton.disabled=true;
 
-const owner=
-isOwner();
-
 try{
 
 await addDoc(
@@ -1487,7 +1339,7 @@ collection(db,"messages"),
 text:text,
 name:username,
 uid:user.uid,
-owner:owner,
+owner:isOwner(),
 createdAt:serverTimestamp()
 }
 );
@@ -1521,11 +1373,7 @@ if(!db||!user)return;
 try{
 
 await setDoc(
-doc(
-db,
-"presence",
-tabId
-),
+doc(db,"presence",tabId),
 {
 uid:user.uid,
 name:username||"anonymous",
@@ -1555,11 +1403,7 @@ if(!db)return;
 try{
 
 await deleteDoc(
-doc(
-db,
-"presence",
-tabId
-)
+doc(db,"presence",tabId)
 );
 
 }catch(e){
@@ -1605,7 +1449,6 @@ collection(db,"presence"),
 snapshot=>{
 
 const now=Date.now();
-
 const activeUsers=[];
 
 snapshot.forEach(
@@ -1649,7 +1492,6 @@ activeUsers.sort(
 (a,b)=>{
 
 if(a.presenceId===tabId)return-1;
-
 if(b.presenceId===tabId)return 1;
 
 return(
@@ -1671,12 +1513,8 @@ document.createElement("div");
 
 row.className="user";
 
-if(
-person.presenceId===tabId
-){
-
+if(person.presenceId===tabId){
 row.classList.add("you");
-
 }
 
 if(
@@ -1698,22 +1536,14 @@ const name=
 document.createElement("span");
 
 name.className="userName";
-
 name.textContent=
 person.name||"anonymous";
 
-if(
-person.presenceId===tabId
-){
-
+if(person.presenceId===tabId){
 name.textContent+=" (you)";
-
 }
 
-row.append(
-dot,
-name
-);
+row.append(dot,name);
 
 if(
 serverOwnerId&&
@@ -1735,11 +1565,11 @@ users.appendChild(row);
 }
 );
 
-const count=
+onlineCount.textContent=
 activeUsers.length;
 
-onlineCount.textContent=count;
-sidebarCount.textContent=count;
+sidebarCount.textContent=
+activeUsers.length;
 
 }
 
@@ -1785,6 +1615,10 @@ data.serverName
 chatDisabled=
 data.disableChat===true;
 
+}else{
+
+chatDisabled=false;
+
 }
 
 serverNameElement.textContent=name;
@@ -1802,6 +1636,8 @@ console.error(
 "Server settings listener error:",
 e
 );
+
+chatDisabled=false;
 
 serverNameElement.textContent="general";
 chatNameElement.textContent="general";
@@ -1881,8 +1717,7 @@ function updateClaimButton(){
 
 if(isOwner()){
 
-claimButton.textContent=
-"👑 owner";
+claimButton.textContent="👑 owner";
 
 return;
 
@@ -1890,15 +1725,13 @@ return;
 
 if(serverOwnerId){
 
-claimButton.textContent=
-"claimed";
+claimButton.textContent="claimed";
 
 return;
 
 }
 
-claimButton.textContent=
-"claim";
+claimButton.textContent="claim";
 
 }
 
@@ -1940,9 +1773,7 @@ claimOwnerInfo.innerHTML=
 
 claimCodeElement.textContent="";
 
-claimStatus.className=
-"claimStatus good";
-
+claimStatus.className="claimStatus good";
 claimStatus.textContent=
 "You're already verified as the owner.";
 
@@ -1955,7 +1786,7 @@ return;
 if(serverOwnerId){
 
 claimOwnerInfo.innerHTML=
-'<div class="ownerInfo">This server has already been claimed by its owner.</div>';
+'<div class="ownerInfo">This server has already been claimed.</div>';
 
 claimCodeElement.textContent="";
 claimStatus.textContent="";
@@ -1972,9 +1803,7 @@ randomClaimCode();
 claimCodeElement.textContent=
 claimCode;
 
-claimStatus.className=
-"claimStatus";
-
+claimStatus.className="claimStatus";
 claimStatus.textContent=
 "Waiting for the claim document...";
 
@@ -1990,11 +1819,7 @@ function watchForClaim(){
 if(!claimCode)return;
 
 const claimRef=
-doc(
-db,
-"server",
-"claim"
-);
+doc(db,"server","claim");
 
 if(unsubscribeClaim){
 unsubscribeClaim();
@@ -2007,9 +1832,7 @@ async snapshot=>{
 
 if(!snapshot.exists()){
 
-claimStatus.className=
-"claimStatus";
-
+claimStatus.className="claimStatus";
 claimStatus.textContent=
 "Waiting for the claim document...";
 
@@ -2022,15 +1845,10 @@ snapshot.data();
 
 if(data.ownerId){
 
-if(
-data.ownerId===user.uid
-){
+if(data.ownerId===user.uid){
 
-serverOwnerId=
-user.uid;
-
-rememberedOwnerId=
-user.uid;
+serverOwnerId=user.uid;
+rememberedOwnerId=user.uid;
 
 localStorage.setItem(
 "natter_owner_id",
@@ -2094,11 +1912,8 @@ merge:true
 }
 );
 
-serverOwnerId=
-user.uid;
-
-rememberedOwnerId=
-user.uid;
+serverOwnerId=user.uid;
+rememberedOwnerId=user.uid;
 
 localStorage.setItem(
 "natter_owner_id",
@@ -2130,50 +1945,10 @@ e.message;
 }
 
 
-async function toggleChat(){
-
-if(!isOwner())return;
-
-const settingsRef=
-doc(
-db,
-"server",
-"settings"
-);
-
-try{
-
-await setDoc(
-settingsRef,
-{
-disableChat:!chatDisabled
-},
-{
-merge:true
-}
-);
-
-}catch(e){
-
-console.error(e);
-
-alert(
-"Couldn't change the chat setting.\n\n"+
-e.message
-);
-
-}
-
-}
-
-
 function openName(){
 
-nameInput.value=
-username;
-
+nameInput.value=username;
 nameError.textContent="";
-
 nameModal.style.display="flex";
 
 setTimeout(
@@ -2201,18 +1976,14 @@ return;
 }
 
 username=
-value.slice(
-0,
-32
-);
+value.slice(0,32);
 
 localStorage.setItem(
 "natter_username",
 username
 );
 
-nameModal.style.display=
-"none";
+nameModal.style.display="none";
 
 await updatePresence();
 
@@ -2231,11 +2002,6 @@ sendButton.addEventListener(
 sendMessage
 );
 
-toggleChatButton.addEventListener(
-"click",
-toggleChat
-);
-
 messageInput.addEventListener(
 "keydown",
 e=>{
@@ -2243,7 +2009,6 @@ e=>{
 if(e.key==="Enter"){
 
 e.preventDefault();
-
 sendMessage();
 
 }
@@ -2281,7 +2046,6 @@ e=>{
 if(e.key==="Enter"){
 
 e.preventDefault();
-
 saveName();
 
 }

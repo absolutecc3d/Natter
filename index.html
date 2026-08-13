@@ -662,6 +662,10 @@ let unsubscribeClaim;
 let unsubscribeSettings;
 
 let serverOwnerId=null;
+
+let rememberedOwnerId=
+localStorage.getItem("natter_owner_id")||"";
+
 let claimCode=null;
 let heartbeatTimer=null;
 
@@ -678,29 +682,62 @@ tabId
 );
 
 
-const setup=document.getElementById("setup");
-const appScreen=document.getElementById("app");
-const config=document.getElementById("config");
-const connectButton=document.getElementById("connect");
-const error=document.getElementById("error");
-const officialServer=document.getElementById("officialServer");
+const setup=
+document.getElementById("setup");
 
-const messages=document.getElementById("messages");
-const messageInput=document.getElementById("message");
-const sendButton=document.getElementById("send");
+const appScreen=
+document.getElementById("app");
 
-const users=document.getElementById("users");
-const onlineCount=document.getElementById("onlineCount");
-const sidebarCount=document.getElementById("sidebarCount");
+const config=
+document.getElementById("config");
 
-const nameModal=document.getElementById("nameModal");
-const nameInput=document.getElementById("nameInput");
-const nameError=document.getElementById("nameError");
+const connectButton=
+document.getElementById("connect");
 
-const claimModal=document.getElementById("claimModal");
-const claimCodeElement=document.getElementById("claimCode");
-const claimStatus=document.getElementById("claimStatus");
-const claimOwnerInfo=document.getElementById("claimOwnerInfo");
+const error=
+document.getElementById("error");
+
+const officialServer=
+document.getElementById("officialServer");
+
+const messages=
+document.getElementById("messages");
+
+const messageInput=
+document.getElementById("message");
+
+const sendButton=
+document.getElementById("send");
+
+const users=
+document.getElementById("users");
+
+const onlineCount=
+document.getElementById("onlineCount");
+
+const sidebarCount=
+document.getElementById("sidebarCount");
+
+const nameModal=
+document.getElementById("nameModal");
+
+const nameInput=
+document.getElementById("nameInput");
+
+const nameError=
+document.getElementById("nameError");
+
+const claimModal=
+document.getElementById("claimModal");
+
+const claimCodeElement=
+document.getElementById("claimCode");
+
+const claimStatus=
+document.getElementById("claimStatus");
+
+const claimOwnerInfo=
+document.getElementById("claimOwnerInfo");
 
 const claimButton=
 document.getElementById("claimServer");
@@ -830,7 +867,9 @@ connectButton.textContent="connecting...";
 try{
 
 app=initializeApp(firebaseConfig);
+
 auth=getAuth(app);
+
 db=getFirestore(app);
 
 localStorage.setItem(
@@ -883,8 +922,10 @@ function isOwner(){
 
 return !!(
 user&&
-serverOwnerId&&
-serverOwnerId===user.uid
+(
+serverOwnerId===user.uid||
+rememberedOwnerId===user.uid
+)
 );
 
 }
@@ -971,7 +1012,8 @@ return;
 
 }
 
-const data=snapshot.data();
+const data=
+snapshot.data();
 
 serverOwnerId=
 typeof data.ownerId==="string"
@@ -983,6 +1025,9 @@ serverOwnerId&&
 user&&
 serverOwnerId===user.uid
 ){
+
+rememberedOwnerId=
+user.uid;
 
 localStorage.setItem(
 "natter_owner_id",
@@ -1444,7 +1489,7 @@ claimOwnerInfo.innerHTML=
 claimCodeElement.textContent="";
 claimStatus.className="claimStatus good";
 claimStatus.textContent=
-"Your browser is verified as the owner.";
+"Your browser is remembered as the owner.";
 
 return;
 
@@ -1507,16 +1552,26 @@ snapshot.data();
 
 if(data.ownerId){
 
-serverOwnerId=data.ownerId;
+serverOwnerId=
+data.ownerId;
 
-updateOwnerUI();
+if(
+serverOwnerId===user.uid
+){
 
-if(isOwner()){
+rememberedOwnerId=
+user.uid;
 
 localStorage.setItem(
 "natter_owner_id",
 user.uid
 );
+
+}
+
+updateOwnerUI();
+
+if(isOwner()){
 
 claimStatus.className=
 "claimStatus good";
@@ -1525,7 +1580,7 @@ claimStatus.textContent=
 "✓ Server successfully claimed!";
 
 claimOwnerInfo.innerHTML=
-'<div class="ownerInfo">👑 You now own this server.</div>';
+'<div class="ownerInfo">👑 You now own this server. This browser will remember you.</div>';
 
 }else{
 
@@ -1571,6 +1626,19 @@ claimedAt:serverTimestamp()
 merge:true
 }
 );
+
+serverOwnerId=
+user.uid;
+
+rememberedOwnerId=
+user.uid;
+
+localStorage.setItem(
+"natter_owner_id",
+user.uid
+);
+
+updateOwnerUI();
 
 }catch(e){
 

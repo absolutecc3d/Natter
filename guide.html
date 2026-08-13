@@ -234,7 +234,8 @@ font-size:22px;
 <a href="#servername">10. Set the server name</a>
 <a href="#owner">11. How ownership works</a>
 <a href="#structure">12. Firestore structure</a>
-<a href="#troubleshooting">13. Troubleshooting</a>
+<a href="#clear-messages">13. Clear all messages</a>
+<a href="#troubleshooting">14. Troubleshooting</a>
 </div>
 
 
@@ -639,24 +640,67 @@ presence
 
 <h3>server/claim</h3>
 
-<p>Contains information about who owns the server.</p>
+<p>
+Contains information about who owns the server.
+</p>
 
 <h3>server/settings</h3>
 
-<p>Contains settings such as the server name.</p>
+<p>
+Contains settings such as the server name.
+</p>
 
 <h3>messages</h3>
 
-<p>Contains the chat messages.</p>
+<p>
+Contains the chat messages.
+</p>
 
 <h3>presence</h3>
 
-<p>Contains temporary information about users who are currently online.</p>
+<p>
+Contains temporary information about users who are currently online.
+</p>
+</div>
+
+
+<div class="section" id="clear-messages">
+<h2>13. Clear all messages</h2>
+
+<p>
+Want to completely wipe the chat history and start fresh?
+You can do it directly from Firestore.
+</p>
+
+<ol>
+<li>Open <b>Firestore Database → Data</b>.</li>
+<li>Find the <code>messages</code> collection.</li>
+<li>Delete the entire <b>messages collection</b>.</li>
+</ol>
+
+<p>
+You do <b>not</b> need to create the collection again manually.
+When someone sends a new message, Natter automatically creates the
+<code>messages</code> collection again and adds the new message.
+</p>
+
+<pre>messages
+→ DELETE COLLECTION</pre>
+
+<div class="warning">
+This permanently clears the messages currently stored in that collection.
+Make sure you actually want to remove the chat history before deleting it.
+</div>
+
+<div class="note">
+Once the first new message is sent, Firestore automatically creates
+<code>messages</code> again.
+</div>
 </div>
 
 
 <div class="section" id="troubleshooting">
-<h2>13. Troubleshooting</h2>
+<h2>14. Troubleshooting</h2>
 
 <h3>Anonymous authentication error</h3>
 
